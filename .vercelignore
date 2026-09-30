@@ -1,0 +1,9 @@
+.agents/
+skills-lock.json
+admin-access.txt
+.env.local
+tests/
+test-results/
+playwright-report/
+scripts/
+README.md

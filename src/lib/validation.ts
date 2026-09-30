@@ -1,6 +1,45 @@
 import { z } from 'zod';
 import { statuses } from './project';
-export const contactSchema = z.object({ name: z.string().trim().min(2).max(100), organization: z.string().trim().min(2).max(160), email: z.email().max(200), message: z.string().trim().min(15).max(3000), consent: z.literal(true), website: z.string().max(0) });
-export const schoolUpdateSchema = z.object({ id: z.string().min(1).max(200), status: z.enum(statuses), summary: z.string().trim().max(500), publicVisibility: z.boolean(), latitude: z.number().min(-90).max(90).nullable(), longitude: z.number().min(-180).max(180).nullable() }).refine(v => (v.latitude === null) === (v.longitude === null), 'Informe latitude e longitude juntas.');
-export const activitySchema = z.object({ schoolId: z.string().min(1), title: z.string().trim().min(5).max(150), description: z.string().trim().max(1500), status: z.enum(['planned','confirmed','completed','cancelled']), scheduledAt: z.iso.date().nullable(), completedAt: z.iso.date().nullable(), studentsReached: z.number().int().min(0).max(100000).nullable(), classesReached: z.number().int().min(0).max(10000).nullable() }).refine(v => v.status !== 'completed' || Boolean(v.completedAt), 'Atividade realizada exige data de conclusão.');
-export const materialSchema = z.object({ title: z.string().trim().min(3).max(150), description: z.string().trim().min(5).max(500), type: z.string().min(2).max(50), fileUrl: z.url().refine(url => url.startsWith('https://'), 'Use um endereço HTTPS.'), published: z.boolean() });
+export const contactSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  organization: z.string().trim().min(2).max(160),
+  email: z.email().max(200),
+  message: z.string().trim().min(15).max(3000),
+  consent: z.literal(true),
+  website: z.string().max(0),
+});
+export const schoolUpdateSchema = z
+  .object({
+    id: z.string().min(1).max(200),
+    status: z.enum(statuses),
+    summary: z.string().trim().max(500),
+    publicVisibility: z.boolean(),
+    latitude: z.number().min(-90).max(90).nullable(),
+    longitude: z.number().min(-180).max(180).nullable(),
+  })
+  .refine(
+    (v) => (v.latitude === null) === (v.longitude === null),
+    'Informe latitude e longitude juntas.',
+  );
+export const activitySchema = z
+  .object({
+    schoolId: z.string().min(1),
+    title: z.string().trim().min(5).max(150),
+    description: z.string().trim().max(1500),
+    status: z.enum(['planned', 'confirmed', 'completed', 'cancelled']),
+    scheduledAt: z.iso.date().nullable(),
+    completedAt: z.iso.date().nullable(),
+    studentsReached: z.number().int().min(0).max(100000).nullable(),
+    classesReached: z.number().int().min(0).max(10000).nullable(),
+  })
+  .refine(
+    (v) => v.status !== 'completed' || Boolean(v.completedAt),
+    'Atividade realizada exige data de conclusão.',
+  );
+export const materialSchema = z.object({
+  title: z.string().trim().min(3).max(150),
+  description: z.string().trim().min(5).max(500),
+  type: z.string().min(2).max(50),
+  fileUrl: z.url().refine((url) => url.startsWith('https://'), 'Use um endereço HTTPS.'),
+  published: z.boolean(),
+});

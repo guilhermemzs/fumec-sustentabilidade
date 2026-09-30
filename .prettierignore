@@ -1,0 +1,11 @@
+.next
+node_modules
+.vercel
+.env*
+admin-access.txt
+drizzle/meta
+public/materiais
+test-results
+playwright-report
+.agents
+skills-lock.json

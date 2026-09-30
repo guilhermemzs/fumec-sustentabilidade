@@ -11,3 +11,4 @@ admin-access.txt
 skills-lock.json
 
 .env*
+!.env.example
