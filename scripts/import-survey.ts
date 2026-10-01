@@ -4,7 +4,8 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { sql } from 'drizzle-orm';
 import { schools, engagements, teamMembers } from '../src/db/schema';
-import { initialSchools, referenceDate } from '../src/lib/project';
+import { referenceDate } from '../src/lib/project';
+import { initialSchools } from '../src/lib/survey';
 import { documentedMembers } from '../src/lib/team';
 config({ path: '.env.local', quiet: true });
 async function main() {
@@ -99,17 +100,15 @@ async function main() {
     : [];
   if (newMembers.length)
     updates.push(
-      db
-        .insert(teamMembers)
-        .values(
-          newMembers.map(({ name, course, photoUrl, role, published }) => ({
-            name,
-            course,
-            photoUrl,
-            role,
-            published,
-          })),
-        ),
+      db.insert(teamMembers).values(
+        newMembers.map(({ name, course, photoUrl, role, published }) => ({
+          name,
+          course,
+          photoUrl,
+          role,
+          published,
+        })),
+      ),
     );
   if (updates.length) await db.batch([updates[0], ...updates.slice(1)]);
   const rows = await db

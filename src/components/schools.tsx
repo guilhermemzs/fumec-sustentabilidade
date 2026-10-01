@@ -35,17 +35,18 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
           Etapa do diálogo
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="all">Todos os estados</option>
-            {statuses.map((s) => (
-              <option key={s} value={s}>
-                {statusLabels[s]}
-              </option>
-            ))}
+            {statuses
+              .filter((s) => schools.some((school) => school.status === s))
+              .map((s) => (
+                <option key={s} value={s}>
+                  {statusLabels[s]}
+                </option>
+              ))}
           </select>
         </label>
       </div>
       <p className="meta-line" role="status">
-        {filtered.length} instituições neste recorte cadastrado. A lista não representa toda a
-        campanha de mobilização.
+        {filtered.length} instituições
       </p>
       <div className="school-list">
         {filtered.length ? (
@@ -53,11 +54,12 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
             <article key={s.id} className="school-row">
               <div>
                 <h3>{s.name}</h3>
-                <p>
-                  {s.city ?? 'Município a validar'}
-                  {s.state ? `/${s.state}` : ''}
-                  {s.priority ? ' · Frente prioritária' : ''}
-                </p>
+                {s.city ? (
+                  <p>
+                    {s.city}
+                    {s.state ? `/${s.state}` : ''}
+                  </p>
+                ) : null}
                 {s.address ? (
                   <div className="school-address">
                     <p>
@@ -75,7 +77,6 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
                   </div>
                 ) : null}
               </div>
-              <p>{s.summary}</p>
               <span
                 className={
                   ['possibilidade_futura', 'indisponivel'].includes(s.status)
@@ -99,52 +100,25 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
 export function Territory({ schools }: { schools: School[] }) {
   const [active, setActive] = useState(false);
   const geolocated = schools.filter((s) => s.latitude !== null && s.longitude !== null);
+  if (!geolocated.length) return null;
   return (
     <section aria-labelledby="territory-heading">
-      <p className="eyebrow">BELO HORIZONTE & REGIÃO METROPOLITANA</p>
-      <h2 id="territory-heading">Onde o diálogo acontece.</h2>
-      <p>
-        A Universidade FUMEC, em Belo Horizonte, é o ponto de origem da iniciativa. A mobilização
-        envolve também Contagem, Nova Lima e a região metropolitana.
-      </p>
+      <p className="eyebrow">ESCOLAS</p>
+      <h2 id="territory-heading">Localização das instituições</h2>
       <div className="map-frame">
         {active ? (
           <Map schools={geolocated} />
         ) : (
           <div className="map-placeholder">
             <MapPin size={35} strokeWidth={1.2} />
-            <h3>Um projeto conectado ao território</h3>
-            <p>
-              Abra o mapa da região. O OpenStreetMap recebe uma requisição do navegador ao carregar
-              os mapas.
-            </p>
+            <h3>Mapa das escolas</h3>
+            <p>O OpenStreetMap recebe uma requisição do navegador ao carregar os mapas.</p>
             <button className="button secondary" onClick={() => setActive(true)}>
               Explorar o mapa
             </button>
           </div>
         )}
       </div>
-      <div className="map-legend">
-        {[
-          ['Mapeada', '#7a8578'],
-          ['Contatada', '#9a8255'],
-          ['Interessada', '#7f994d'],
-          ['Em alinhamento', '#316447'],
-          ['Confirmada', '#34788a'],
-          ['Atividade realizada', '#18422f'],
-        ].map(([label, color]) => (
-          <span key={label} style={{ '--dot': color } as React.CSSProperties}>
-            {label}
-          </span>
-        ))}
-      </div>
-      <p className="source-note">
-        {geolocated.length
-          ? `${geolocated.length} instituições com coordenadas cadastradas.`
-          : 'Os endereços do levantamento estão nos cartões, com links para consulta no mapa. Marcadores serão incluídos após a validação das coordenadas.'}{' '}
-        O círculo indica apenas a região de origem, sem representar o endereço da Universidade ou
-        uma escola atendida.
-      </p>
     </section>
   );
 }

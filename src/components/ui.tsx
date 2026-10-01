@@ -45,7 +45,6 @@ export function Timeline() {
           <p className="eyebrow">{step.date}</p>
           <h3>{step.title}</h3>
           <p>{step.text}</p>
-          <span className={step.state === 'prevista' ? 'badge muted' : 'badge'}>{step.state}</span>
         </li>
       ))}
     </ol>
@@ -56,13 +55,9 @@ export function Invite() {
     <section className="invite">
       <div className="container invite-inner">
         <div>
-          <p className="eyebrow">UMA CONVERSA PODE SER O COMEÇO</p>
-          <h2>
-            Vamos construir essa
-            <br />
-            ideia com a sua escola?
-          </h2>
-          <p>A atividade começa ouvindo as necessidades da comunidade escolar.</p>
+          <p className="eyebrow">CONTATO</p>
+          <h2>Converse com a equipe ECMA.</h2>
+          <p>Canal para educadores e responsáveis por instituições.</p>
         </div>
         <ActionLink href="/contato">Converse com o grupo</ActionLink>
       </div>
@@ -78,8 +73,7 @@ export function Footer() {
           <p>
             Entre Construção e Meio Ambiente
             <br />
-            Engenharia que sai da universidade
-            <br />e chega à escola.
+            Projeto de Extensão · 2026
           </p>
         </div>
         <div>
@@ -90,19 +84,15 @@ export function Footer() {
             <br />
             Universidade FUMEC · Belo Horizonte/MG
           </p>
-          <p className="caption">
-            Iniciativa estudantil. Este não é um site institucional oficial da Universidade.
-          </p>
         </div>
         <nav aria-label="Links do rodapé">
           <Link href="/equipe">Equipe</Link>
-          <Link href="/casa-da-terra">Casa da Terra</Link>
           <Link href="/privacidade">Privacidade</Link>
           <Link href="/admin">Gestão interna</Link>
         </nav>
       </div>
       <div className="footer-bottom">
-        <span>Conhecimento que encontra o território.</span>
+        <span>ECMA · Entre Construção e Meio Ambiente</span>
         <span>Construção sustentável & educação ambiental</span>
       </div>
     </footer>

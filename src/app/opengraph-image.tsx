@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-export const alt = 'ECMA · Engenharia que sai da universidade e chega à escola.';
+export const alt = 'ECMA · Construção sustentável na escola.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export default function Image() {
@@ -26,8 +26,8 @@ export default function Image() {
           lineHeight: 1.1,
         }}
       >
-        <span>Construir um futuro</span>
-        <span>começa na escola.</span>
+        <span>Construção sustentável</span>
+        <span>na escola.</span>
       </div>
       <div style={{ display: 'flex', fontSize: 24 }}>
         Projeto de Extensão 2026 · Engenharia Civil · Universidade FUMEC

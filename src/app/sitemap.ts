@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/sustentabilidade',
     '/escolas',
     '/impacto',
-    '/casa-da-terra',
     '/materiais',
     '/equipe',
     '/contato',

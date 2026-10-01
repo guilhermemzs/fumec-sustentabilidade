@@ -15,11 +15,6 @@ export default function TerritoryMap({ schools }: { schools: School[] }) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 18,
       }).addTo(map);
-      L.circle([-19.92, -43.94], { radius: 4500, color: '#537349', weight: 1, fillOpacity: 0.08 })
-        .addTo(map)
-        .bindPopup(
-          'Belo Horizonte · região de origem da iniciativa. Localização regional, não endereço da FUMEC.',
-        );
       schools.forEach((s) => {
         if (s.latitude === null || s.longitude === null || !map) return;
         const popup = document.createElement('div');
@@ -42,6 +37,10 @@ export default function TerritoryMap({ schools }: { schools: School[] }) {
           .addTo(map)
           .bindPopup(popup);
       });
+      const points = schools.flatMap((s): [number, number][] =>
+        s.latitude !== null && s.longitude !== null ? [[s.latitude, s.longitude]] : [],
+      );
+      if (points.length) map.fitBounds(points, { padding: [30, 30], maxZoom: 15 });
     });
     return () => {
       disposed = true;

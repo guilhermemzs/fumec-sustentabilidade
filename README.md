@@ -15,16 +15,15 @@ Neon é acessado somente no servidor. Vercel hospeda o aplicativo na região `gr
 
 ## Páginas e funcionalidades
 
-- `/`: narrativa, ilustração técnica original e contexto da mobilização.
-- `/projeto`: objetivos, metodologia e identidade estudantil.
+- `/`: apresentação da ECMA, ilustração educativa, equipe e mobilização documentada.
+- `/projeto`: objetivos, temas da apresentação original e identidade estudantil.
 - `/sustentabilidade`: 11 módulos com conceitos, perguntas e atividades orientadas.
 - `/sustentabilidade/[slug]`: páginas educativas pré-renderizadas.
 - `/sustentabilidade/checklist`: nove temas, resultado educativo e impressão; respostas ficam na memória da página.
 - `/sustentabilidade/quiz`: quatro perguntas com explicações; sem envio de respostas.
-- `/escolas`: pesquisa e filtros de estado; mapa Leaflet/OpenStreetMap ativado pelo visitante.
+- `/escolas`: pesquisa e filtros de contato; endereços documentados e links OpenStreetMap. O mapa só aparece com coordenadas registradas.
 - `/impacto`: mobilização, cadastros, alinhamentos e participações após atividades concluídas.
-- `/casa-da-terra`: síntese de referência externa da UNIFEI, explicitamente distinta do trabalho do grupo.
-- `/materiais`: apresentação original do grupo (nove páginas), cartilha ECMA de 14 páginas e checklist de duas páginas, mais arquivos publicados na gestão.
+- `/materiais`: apresentação original do grupo (nove páginas), mais arquivos explicitamente publicados na gestão.
 - `/equipe`: sete nomes provenientes do material fornecido; retratos de Guilherme Menezes, Bernardo Lopes e Luis Ladeira, enquadrados na foto original por CSS, preservando os rostos. Os três também aparecem na página inicial.
 - `/contato`: consentimento, validação, armazenamento privado e proteção contra abuso.
 - `/privacidade`: finalidades, fornecedores, gestão de dados e cuidados com menores.
@@ -39,15 +38,15 @@ SEO inclui titles, descriptions, canonical, Open Graph gerado, sitemap, robots, 
 
 Há chaves estrangeiras, estados enumerados, índices e constraints para coordenadas, notas, quantidades não negativas, anonimato e data de conclusão. Migrations versionadas em `drizzle/`: `0000_strong_starhawk.sql`, `0001_silky_terror.sql` (data de consentimento) e `0002_nostalgic_randall_flagg.sql` (endereço, UF, CEP e data do levantamento).
 
-O levantamento de **30/09/2026** substitui o recorte inicial: **62 escolas com resposta**, 18 interessadas, 32 possibilidades futuras, cinco com retorno inicial, três em alinhamento, três indisponíveis neste ciclo e uma com reunião realizada. CSV e aba Escolas do XLSX foram comparados campo a campo (62 registros iguais; a planilha possui uma coluna adicional de origem). O snapshot público está em `src/data/school-survey.json`, sem contatos pessoais. Endereços, bairros, município, UF e CEP disponíveis foram importados. Coordenadas continuam nulas; cada cartão permite consultar o endereço no OpenStreetMap.
+O levantamento de **30/09/2026** substitui o recorte inicial: **62 escolas com resposta**, 18 interessadas, 32 possibilidades futuras, cinco com retorno inicial, três em alinhamento, três indisponíveis neste ciclo e uma com reunião realizada. CSV e aba Escolas do XLSX foram comparados campo a campo (62 registros iguais; a planilha possui uma coluna adicional de origem). A fonte do levantamento está em `src/data/school-survey.json`, sem contatos pessoais. Sua leitura fica em `src/lib/survey.ts`, fora dos componentes de cliente. A projeção pública elimina notas de acompanhamento e prioridades internas. Endereços, bairros, município, UF e CEP disponíveis foram importados. Coordenadas continuam nulas; cada cartão permite consultar o endereço no OpenStreetMap.
 
-A reunião da Maria Modesta Cravo está registrada em 30/09/2026 às 12h40, com fuso de São Paulo. Isso não significa atividade confirmada ou alcance realizado. A estimativa de aproximadamente 200 escolas contatadas permanece separada das 62 respostas documentadas. Nenhum conteúdo de caixa de e-mail, telefone ou contato pessoal foi importado.
+A reunião da Maria Modesta Cravo está registrada em 30/09/2026 às 12h40, com fuso de São Paulo. Isso não significa atividade confirmada ou alcance realizado. A estimativa de aproximadamente 200 escolas contatadas não é publicada. Nenhum conteúdo de caixa de e-mail, telefone ou contato pessoal foi importado.
 
 O seed é idempotente para novas instalações. Para atualizar a base antiga: `npm run db:migrate`, `npm run db:import-survey` (prévia) e `npm run db:import-survey -- --apply`. A importação cria backup local de escolas, estados e integrantes em `work/backups` fora do repositório, aplica as alterações em transação, preserva coordenadas e não repete um snapshot já aplicado. Não exclui instituições; se encontrar registros fora da fonte, exige revisão antes de importar.
 
 O identificador institucional inicial deriva do nome normalizado. Confira registros antes de adicionar escolas: nomes distintos ou abreviações podem se referir à mesma instituição. A deduplicação formal da campanha permanece pendente. Eventos de contato pertencem ao cadastro único da instituição e permitem consultas exatas após importação validada. O número 204 é uma contagem de mensagens, nunca utilizado como quantidade de escolas.
 
-Atividades só entram no alcance após serem marcadas como realizadas. O alcance representa **participações**, sem deduplicação de pessoas entre encontros. Campos vazios significam não informado, e não zero. Não há nomes de estudantes no banco. As tabelas `classes` e `site_content` estão preparadas para gestão detalhada futura; atualmente o painel registra turmas como quantidades agregadas. A estimativa da campanha é mantida separadamente dos cadastros atuais.
+Atividades só entram no alcance após serem marcadas como realizadas. O alcance representa **participações**, sem deduplicação de pessoas entre encontros. Campos vazios significam não informado, e não zero. Não há nomes de estudantes no banco. As tabelas `classes` e `site_content` estão preparadas para gestão detalhada futura; atualmente o painel registra turmas como quantidades agregadas. Estimativas da campanha não integram a consulta pública.
 
 ## Desenvolvimento
 
@@ -90,15 +89,14 @@ npx tsx scripts/integration-smoke.ts
 
 Os testes de navegador verificam páginas, responsividade, filtros, quiz, checklist, controle de acesso, 404, validação das APIs, PDFs reais e acessibilidade com axe (WCAG A/AA). O teste de integração usa dados sintéticos identificados como descartáveis, verifica contato, sessão, feedback e constraints e remove somente seus próprios registros. Não representa uma certificação integral WCAG nem auditoria de segurança independente.
 
-Para testar uma publicação: defina `TEST_BASE_URL` com o domínio. O teste de integração necessita conexão ao mesmo banco e arquivo local de acesso. `scripts/capture-qa.ts` gera capturas em `work/qa` fora do repositório para revisão visual. PDFs foram reabertos, extraídos, renderizados e revisados visualmente.
+Para testar uma publicação: defina `TEST_BASE_URL` com o domínio. O teste de integração necessita conexão ao mesmo banco e arquivo local de acesso. `scripts/capture-qa.ts` gera capturas em `work/qa` fora do repositório para revisão visual. A apresentação original é preservada sem alteração.
 
-## Pendências de conteúdo
+## Política de publicação
 
-- Confirmar funções específicas dos integrantes, se desejarem publicá-las. Os nomes e a foto fornecidos já estão publicados; Luis Ladeira segue a identificação mais recente do usuário.
-- Fornecer documento acadêmico original da Casa da Terra e referência bibliográfica completa.
-- Fornecer novos registros originais das atividades. A apresentação de Construção Sustentável já está publicada sem alteração do arquivo fornecido.
-- Validar coordenadas e deduplicação completa da campanha. Os municípios e endereços do levantamento de 62 escolas já estão cadastrados.
-- Registrar datas confirmadas, atividades realizadas, participações e resultados reais.
-- Revisar academicamente a cartilha antes de utilizá-la como material oficial do grupo.
+A área pública omite informações ausentes, estimativas, previsões sem confirmação e avisos internos. Notas de acompanhamento permanecem na gestão e não são enviadas aos componentes de cliente. Os 32 registros classificados internamente como `possibilidade_futura` aparecem apenas como `Respondeu`; a fonte e os estados na administração são preservados.
 
-Nenhuma parceria, foto identificável de menor ou resultado futuro foi inventado para preencher o site.
+O alcance só é mostrado para atividades realizadas com data de conclusão. Uma contagem ausente é omitida; zero é mantido quando foi explicitamente informado em uma atividade. Interesse, alinhamento e reunião não se tornam resultados de execução.
+
+Em 01/10/2026, a página Casa da Terra, a cartilha e o checklist em PDF foram retirados da publicação, inclusive seus links e entradas no sitemap. Os arquivos e o gerador foram preservados em `../../work/unpublished-2026-10-01/`, fora do diretório publicado. Esses endereços retornam 404. O checklist e o quiz online permanecem educativos, e os módulos incluem referências consultáveis da apresentação original, Copasa, Funasa, ProjetEEE e MME/CEPEL.
+
+Datas e resultados novos devem ser documentados antes da publicação. Funções de integrantes, coordenadas e arquivos adicionais ficam ocultos quando ausentes. Revisões e pendências pertencem à gestão, não às páginas públicas.

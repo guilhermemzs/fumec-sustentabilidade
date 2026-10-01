@@ -30,13 +30,13 @@ export default async function Home() {
             PROJETO DE EXTENSÃO <span>2026 / 2ª ETAPA</span>
           </div>
           <h1>
-            Construir um futuro
+            Construção sustentável
             <br />
-            começa <em>na escola.</em>
+            <em>na escola.</em>
           </h1>
           <p className="hero-description">
-            Engenharia que sai da universidade e chega à escola. Conhecimento para repensar os
-            espaços em que aprendemos, vivemos e construímos.
+            ECMA — Entre Construção e Meio Ambiente. Projeto de Extensão de estudantes de Engenharia
+            Civil da Universidade FUMEC.
           </p>
           <div className="hero-actions">
             <ActionLink href="/projeto">Conheça o projeto</ActionLink>
@@ -57,9 +57,6 @@ export default async function Home() {
         </div>
         <div className="hero-illustration">
           <SchoolDrawing />
-          <div className="drawing-caption">
-            <span>FIG. 01</span> A escola como um sistema vivo <span>ILUSTRAÇÃO CONCEITUAL</span>
-          </div>
         </div>
       </section>
       <section className="fact-band" aria-label="Contexto da iniciativa">
@@ -73,29 +70,25 @@ export default async function Home() {
           <div>
             <strong>07</strong>
             <span>
-              estudantes de Engenharia Civil<small>Um projeto construído em grupo</small>
+              estudantes de Engenharia Civil<small>Universidade FUMEC</small>
             </span>
           </div>
           <div>
             <strong>{String(data.stats.alignment).padStart(2, '0')}</strong>
             <span>
               escolas em alinhamento
-              <small>
-                {data.source === 'snapshot'
-                  ? 'Registro de 30/09/2026'
-                  : 'Cadastros públicos no banco'}
-              </small>
+              <small>Levantamento de 30/09/2026</small>
             </span>
           </div>
         </div>
       </section>
       <section className="section container intro-split">
         <div>
-          <p className="eyebrow">01 / DA UNIVERSIDADE PARA A COMUNIDADE</p>
+          <p className="eyebrow">01 / O PROJETO</p>
           <h2>
-            A sustentabilidade
+            Engenharia Civil e
             <br />
-            mora nas <em>boas perguntas.</em>
+            <em>meio ambiente.</em>
           </h2>
         </div>
         <div className="intro-text">
@@ -104,9 +97,8 @@ export default async function Home() {
             descartamos?
           </p>
           <p>
-            Somos sete estudantes de Engenharia Civil da Universidade FUMEC. Aproximamos esses temas
-            do cotidiano escolar, com escuta, experiências e conteúdo que continua útil depois do
-            encontro.
+            Somos sete estudantes de Engenharia Civil da Universidade FUMEC. O projeto aborda água,
+            energia, materiais e resíduos no cotidiano escolar.
           </p>
           <Link className="text-link" href="/projeto">
             Entenda nossa proposta <ArrowRight size={18} />
@@ -118,7 +110,7 @@ export default async function Home() {
           <div className="section-heading">
             <div>
               <p className="eyebrow">ECMA · ENTRE CONSTRUÇÃO E MEIO AMBIENTE</p>
-              <h2>Por trás do projeto, pessoas.</h2>
+              <h2>Equipe ECMA</h2>
             </div>
             <Link className="text-link" href="/equipe">
               Conheça a equipe <ArrowRight size={18} />
@@ -135,11 +127,11 @@ export default async function Home() {
         <div className="container">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">02 / CONHECIMENTO PARA LEVAR COM VOCÊ</p>
+              <p className="eyebrow">02 / TEMAS EDUCATIVOS</p>
               <h2>
-                O espaço ensina.
+                Construção sustentável
                 <br />
-                Vamos aprender a observá-lo?
+                no cotidiano.
               </h2>
             </div>
             <Link className="text-link" href="/sustentabilidade">
@@ -201,57 +193,14 @@ export default async function Home() {
       <section className="section container">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">03 / UMA TRAJETÓRIA EM CONSTRUÇÃO</p>
-            <h2>
-              O impacto começa
-              <br />
-              com o diálogo.
-            </h2>
+            <p className="eyebrow">03 / ESCOLAS</p>
+            <h2>Mobilização das escolas</h2>
           </div>
           <Link className="text-link" href="/impacto">
-            Acompanhe a jornada <ArrowRight size={18} />
+            Ver os registros <ArrowRight size={18} />
           </Link>
         </div>
         <Timeline />
-        <p className="source-note">
-          As etapas futuras são propostas. Atividades, turmas e estudantes alcançados serão
-          registrados após sua realização.
-        </p>
-      </section>
-      <section className="case-teaser">
-        <div className="container case-inner">
-          <div className="case-formula" aria-label="Solo mais cimento mais água mais vidro moído">
-            <span>Solo</span>
-            <b>+</b>
-            <span>Cimento</span>
-            <b>+</b>
-            <span>Água</span>
-            <b>+</b>
-            <span>Vidro moído</span>
-            <span className="formula-result">
-              ↓<br />
-              Uma pergunta de pesquisa
-            </span>
-          </div>
-          <div>
-            <p className="eyebrow">04 / ESTUDO DE CASO · REFERÊNCIA ACADÊMICA</p>
-            <h2>
-              O que um resíduo
-              <br />
-              pode se tornar?
-            </h2>
-            <p>
-              O estudo Casa da Terra, associado à UNIFEI, nos ajuda a conversar sobre pesquisa,
-              solo-cimento e reaproveitamento de vidro.
-            </p>
-            <p className="caption">
-              Referência externa. Não é um projeto desenvolvido pelo nosso grupo.
-            </p>
-            <ActionLink href="/casa-da-terra" secondary>
-              Conheça o estudo
-            </ActionLink>
-          </div>
-        </div>
       </section>
       <Invite />
     </>

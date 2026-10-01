@@ -3,7 +3,8 @@ import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 import { schools, engagements, metrics, teamMembers } from '../src/db/schema';
 import { documentedMembers } from '../src/lib/team';
-import { initialSchools, referenceDate } from '../src/lib/project';
+import { referenceDate } from '../src/lib/project';
+import { initialSchools } from '../src/lib/survey';
 config({ path: '.env.local', quiet: true });
 async function main() {
   const url = process.env.DATABASE_URL;

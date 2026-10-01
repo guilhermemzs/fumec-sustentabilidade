@@ -4,8 +4,8 @@ export default function Page() {
   return (
     <>
       <PageIntro
-        eyebrow="CUIDADO COM DADOS · REFERÊNCIA 30/09/2026"
-        title="Respeitar as pessoas faz parte do projeto."
+        eyebrow="PRIVACIDADE · 30/09/2026"
+        title="Uso e proteção de dados"
         description="Esta página explica como a plataforma utiliza dados de contato, registros institucionais e informações de navegação."
       />
       <article className="container content-space prose">
@@ -23,16 +23,15 @@ export default function Page() {
         </p>
         <h2>Armazenamento e acesso</h2>
         <p>
-          Mensagens são armazenadas no PostgreSQL fornecido pelo Neon, com o aplicativo hospedado na
-          Vercel. A equipe deve restringir o acesso e revisar periodicamente a necessidade de
-          retenção, removendo os contatos quando a finalidade for encerrada.
+          Mensagens são armazenadas no banco de dados fornecido pelo Neon, com o aplicativo
+          hospedado na Vercel. A equipe deve restringir o acesso e revisar periodicamente a
+          necessidade de retenção, removendo os contatos quando a finalidade for encerrada.
         </p>
         <h2>Segurança e sessões</h2>
         <p>
-          A área administrativa usa cookie de sessão necessário, com duração máxima de oito horas.
-          Para limitar abuso, o sistema mantém contadores associados a uma representação
-          criptográfica do endereço de conexão, sem registrar o endereço bruto nessa tabela. Os
-          contadores expiram após uma hora e podem ser limpos pela equipe.
+          A área administrativa usa cookie de sessão necessário, com duração máxima de oito horas. O
+          site limita tentativas de acesso e envios para reduzir abusos, sem armazenar o endereço de
+          conexão completo nos registros desse controle.
         </p>
         <h2>Crianças e adolescentes</h2>
         <p>
@@ -42,15 +41,15 @@ export default function Page() {
         </p>
         <h2>Conteúdo institucional</h2>
         <p>
-          O cadastro público utiliza nomes de instituições e sínteses de estados de contato. Não
+          O cadastro público utiliza nomes, endereços e estados de contato de instituições. Não
           publica conversas integrais, e-mails pessoais, nomes de responsáveis ou telefones
           extraídos da mobilização.
         </p>
         <h2>Navegação e mapa</h2>
         <p>
-          O checklist e o quiz mantêm respostas apenas na página, sem enviá-las ao servidor. O mapa
-          carrega recursos do OpenStreetMap somente quando ativado. As fontes são servidas pela
-          própria aplicação, sem consultar o Google Fonts durante a visita.
+          O checklist e o quiz mantêm respostas apenas na página, sem enviá-las ao servidor. Os
+          links de consulta de endereços abrem o OpenStreetMap. As fontes são servidas pela própria
+          aplicação, sem consultar o Google Fonts durante a visita.
         </p>
         <p>
           Na hospedagem Vercel, Analytics e Speed Insights registram informações agregadas de uso e

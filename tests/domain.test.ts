@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { initialSchools, institutionKey, summarizeSchools } from '../src/lib/project';
+import { institutionKey, summarizeSchools } from '../src/lib/project';
+import { initialSchools } from '../src/lib/survey';
 import { activitySchema, contactSchema, schoolUpdateSchema } from '../src/lib/validation';
 test('cadastro institucional é único e não converte interesse em parceria', () => {
   assert.equal(new Set(initialSchools.map((s) => s.id)).size, initialSchools.length);

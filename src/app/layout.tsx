@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | ECMA · Extensão FUMEC',
   },
   description:
-    'Projeto de Extensão de estudantes de Engenharia Civil da Universidade FUMEC: construção sustentável, educação ambiental e diálogo com escolas de Belo Horizonte e região.',
+    'Projeto de Extensão de estudantes de Engenharia Civil da Universidade FUMEC: construção sustentável, educação ambiental e diálogo com escolas de Belo Horizonte.',
   keywords: [
     'Projeto de Extensão FUMEC',
     'Engenharia Civil FUMEC',

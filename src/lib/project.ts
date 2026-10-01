@@ -1,4 +1,3 @@
-import surveySchools from '../data/school-survey.json';
 export const referenceDate = '2026-09-30';
 export const statuses = [
   'mapeada',
@@ -52,14 +51,6 @@ export function institutionKey(name: string) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 }
-export const initialSchools: School[] = surveySchools.map((school) => ({
-  ...school,
-  id: institutionKey(school.name),
-  status: school.status as Status,
-  latitude: null,
-  longitude: null,
-  publicVisibility: true,
-}));
 export function summarizeSchools(schools: School[]) {
   return {
     registered: schools.length,
@@ -83,27 +74,13 @@ export function summarizeSchools(schools: School[]) {
 }
 export const timeline = [
   {
-    date: 'Agosto · 2026',
-    title: 'Pesquisar para escolher',
-    text: 'Estudo de temas de Engenharia Civil, meio ambiente e possibilidades de extensão.',
-    state: 'documentada',
+    date: '30 de setembro · 2026',
+    title: 'Levantamento das escolas',
+    text: '62 escolas com resposta: 18 interessadas, três em alinhamento e uma com reunião realizada.',
   },
   {
-    date: 'Setembro · 2026',
-    title: 'Uma direção compartilhada',
-    text: 'Construção sustentável e educação ambiental em escolas tornam-se o foco do grupo.',
-    state: 'documentada',
-  },
-  {
-    date: 'Final de setembro',
-    title: 'A universidade encontra a escola',
-    text: 'Mobilização da campanha e levantamento de 62 escolas com resposta em 30/09. Três em alinhamento e uma reunião realizada; execução ainda não confirmada.',
-    state: 'em andamento',
-  },
-  {
-    date: 'Início de outubro',
-    title: 'Da conversa à atividade',
-    text: 'Definição das ações com as escolas. Execução e avaliação dependem de confirmação e registro.',
-    state: 'prevista',
+    date: '30 de setembro · 12h40',
+    title: 'Reunião na Maria Modesta Cravo',
+    text: 'Encontro com a Escola Estadual Maria Modesta Cravo, em Belo Horizonte.',
   },
 ];

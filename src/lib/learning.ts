@@ -200,8 +200,8 @@ export const lessons: Lesson[] = [
         text: 'Reutilizar é usar novamente um produto ou componente. Reciclar envolve transformar o material. Ambas as estratégias dependem de condições adequadas e não justificam gerar mais resíduos.',
       },
       {
-        title: 'Pesquisa antes da aplicação',
-        text: 'O estudo Casa da Terra, associado à UNIFEI, ilustra a investigação de vidro moído em solo-cimento. Ensaios ajudam a entender resistência e absorção. O comportamento depende da mistura e do processo.',
+        title: 'Separação e destino',
+        text: 'Separe os resíduos conforme os materiais e a coleta disponível. Peças em bom estado podem ser reutilizadas; materiais recicláveis precisam ser encaminhados para a coleta apropriada.',
       },
     ],
     activity:
@@ -261,15 +261,15 @@ export const quizQuestions = [
       'O solo com vegetação pode permitir infiltração. Compactação, saturação e características locais influenciam o resultado.',
   },
   {
-    question: 'Vidro moído sempre melhora um tijolo?',
+    question: 'Quais são as três dimensões da sustentabilidade?',
     options: [
-      'Sim, em qualquer quantidade',
-      'Só depende da cor do vidro',
-      'Não: a mistura e os ensaios precisam ser avaliados',
+      'Somente consumo e custo',
+      'Somente os materiais da obra',
+      'Ambiental, social e econômica',
     ],
     answer: 2,
     explanation:
-      'O desempenho depende da dosagem, do processo e da propriedade avaliada. Resistência e absorção podem apresentar comportamentos diferentes.',
+      'A sustentabilidade considera os impactos ambientais, as condições de vida das pessoas e a viabilidade econômica.',
   },
   {
     question: 'A água da chuva armazenada pode ser bebida diretamente?',

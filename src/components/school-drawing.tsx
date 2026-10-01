@@ -6,10 +6,10 @@ export function SchoolDrawing() {
       role="img"
       aria-labelledby="drawing-title drawing-desc"
     >
-      <title id="drawing-title">Uma escola pensada como um sistema vivo</title>
+      <title id="drawing-title">Construção sustentável na escola</title>
       <desc id="drawing-desc">
-        Ilustração conceitual com ventilação, telhado, reservatório de chuva, jardim e piso
-        permeável. Não representa uma obra realizada.
+        Ilustração de uma escola com ventilação, telhado, reservatório de chuva, jardim e piso
+        permeável.
       </desc>
       <defs>
         <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
@@ -118,7 +118,7 @@ export function SchoolDrawing() {
         fontSize="10"
         letterSpacing="2"
       >
-        ESTUDO CONCEITUAL · SEM ESCALA
+        CONSTRUÇÃO SUSTENTÁVEL
       </text>
       <path d="M35 48H615" stroke="#8b9d7a" />
       <text

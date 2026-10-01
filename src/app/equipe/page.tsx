@@ -12,8 +12,8 @@ export default async function Page() {
     <>
       <PageIntro
         eyebrow="ECMA · 7 ESTUDANTES · ENGENHARIA CIVIL · FUMEC"
-        title="Construir em grupo. Aprender com a comunidade."
-        description="Entre Construção e Meio Ambiente: uma equipe de estudantes da FUMEC conectando conhecimento técnico, educação ambiental e realidade escolar."
+        title="Equipe ECMA"
+        description="Entre Construção e Meio Ambiente · Projeto de Extensão 2026."
       />
       <div className="container content-space">
         <TeamPortraits members={d.members} eager />
@@ -23,8 +23,8 @@ export default async function Page() {
         </p>
         {otherMembers.length ? (
           <section className="team-more" aria-labelledby="team-more-title">
-            <p className="eyebrow">UMA EQUIPE, DIFERENTES CONTRIBUIÇÕES</p>
-            <h2 id="team-more-title">O trabalho se constrói com todos.</h2>
+            <p className="eyebrow">ENGENHARIA CIVIL · FUMEC</p>
+            <h2 id="team-more-title">Integrantes</h2>
             <div className="team-names">
               {otherMembers.map((m) => (
                 <article key={m.id}>
@@ -38,16 +38,8 @@ export default async function Page() {
         ) : null}
         <div className="two-columns team-context">
           <div className="prose">
-            <h2>Uma responsabilidade compartilhada</h2>
-            <p>
-              Pesquisa, planejamento, mobilização de escolas, produção de materiais e avaliação
-              fazem parte do trabalho coletivo. A comunidade escolar participa do diálogo que
-              orienta cada proposta.
-            </p>
-            <p>
-              A ECMA aproxima a Engenharia Civil do cotidiano: água, energia, materiais, conforto e
-              cuidado com o território.
-            </p>
+            <h2>Construção sustentável</h2>
+            <p>Água, energia, materiais e resíduos são temas da apresentação do grupo.</p>
             <ActionLink href="/materiais">Conheça nossos materiais</ActionLink>
           </div>
           <aside className="aside-note">

@@ -22,6 +22,15 @@ async function main() {
     await page
       .locator('.team-portraits')
       .screenshot({ path: '../../work/qa/retratos-' + mode + '.png' });
+    for (const route of ['impacto', 'materiais', 'escolas']) {
+      await page.goto((process.env.TEST_BASE_URL || 'http://localhost:3000') + '/' + route, {
+        waitUntil: 'networkidle',
+      });
+      await page.screenshot({
+        path: '../../work/qa/' + route + '-' + mode + '.png',
+        fullPage: true,
+      });
+    }
     await context.close();
   }
   await browser.close();

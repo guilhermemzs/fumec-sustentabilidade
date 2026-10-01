@@ -16,11 +16,7 @@ export function Checklist() {
   );
   return (
     <div>
-      <div className="notice">
-        Este roteiro orienta uma observação educativa. Não é certificação, diagnóstico técnico ou
-        avaliação oficial da escola. As respostas ficam apenas nesta página e não são enviadas ao
-        grupo.
-      </div>
+      <div className="notice">Observe os espaços da escola com a turma e um professor.</div>
       {checklistItems.map(([id, title, question]) => (
         <div className="checklist-item" key={id}>
           <div>
@@ -43,7 +39,7 @@ export function Checklist() {
         </div>
       ))}
       <div className="result-panel" aria-live="polite">
-        <h2>Um ponto de partida para a conversa.</h2>
+        <h2>Suas observações</h2>
         <p>
           {Object.keys(answers).length} de {checklistItems.length} temas respondidos · {yes}{' '}
           práticas identificadas.
@@ -60,10 +56,6 @@ export function Checklist() {
         ) : (
           <p>Observe os espaços com a turma e escolha uma melhoria que possa ser acompanhada.</p>
         )}
-        <p>
-          Uma resposta positiva não comprova desempenho. Registrem o contexto e conversem com
-          professores e gestão.
-        </p>
       </div>
       <div className="inline-actions">
         <PrintButton />
@@ -95,7 +87,7 @@ export function Quiz() {
       </div>
       {done ? (
         <div className="result-panel" aria-live="polite">
-          <h2 id="quiz-heading">Aprender é continuar perguntando.</h2>
+          <h2 id="quiz-heading">Resultado do quiz</h2>
           <p>
             Você acertou {correct} de {quizQuestions.length} perguntas. Reveja os temas e
             experimente observar sua escola.

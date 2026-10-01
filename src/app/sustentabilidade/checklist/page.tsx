@@ -10,7 +10,7 @@ export default function Page() {
       <PageIntro
         eyebrow="ROTEIRO DE OBSERVAÇÃO · PARA ESTUDANTES E PROFESSORES"
         title="Minha escola é sustentável?"
-        description="Percorra nove temas, observe o que já existe e descubra novas perguntas. A ideia é iniciar uma conversa, sem atribuir uma certificação ao espaço."
+        description="Observe luz, ventilação, água, energia e outros temas com a turma e um professor."
       />
       <div className="container content-space prose">
         <Checklist />

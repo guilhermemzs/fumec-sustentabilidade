@@ -9,7 +9,6 @@ test('páginas públicas, conteúdo e ausência de overflow', async ({ page }) =
     '/sustentabilidade',
     '/escolas',
     '/impacto',
-    '/casa-da-terra',
     '/materiais',
     '/equipe',
     '/contato',
@@ -128,17 +127,17 @@ test('acessibilidade básica em início, escolas, contato e checklist', async ({
   }
 });
 test('materiais reais e metadados de publicação', async ({ request }) => {
-  for (const file of [
-    '/materiais/cartilha.pdf',
-    '/materiais/checklist.pdf',
-    '/materiais/apresentacao-construcao-sustentavel-2026.pdf',
-  ]) {
+  for (const file of ['/materiais/apresentacao-construcao-sustentavel-2026.pdf']) {
     const r = await request.get(file);
     expect(r.status()).toBe(200);
     expect((await r.body()).subarray(0, 4).toString()).toBe('%PDF');
   }
   const sitemap = await request.get('/sitemap.xml');
   expect(await sitemap.text()).toContain('/sustentabilidade/agua-da-chuva');
+  expect(await sitemap.text()).not.toContain('/casa-da-terra');
+  for (const hidden of ['/casa-da-terra', '/materiais/cartilha.pdf', '/materiais/checklist.pdf']) {
+    expect((await request.get(hidden)).status()).toBe(404);
+  }
   const robots = await request.get('/robots.txt');
   expect(await robots.text()).toContain('Disallow: /admin');
 });
@@ -151,11 +150,49 @@ test('menu navega para o projeto em desktop e celular', async ({ page }, info) =
     .getByRole('link', { name: 'O projeto', exact: true })
     .click();
   await expect(page).toHaveURL(/\/projeto$/);
-  await expect(page.locator('h1')).toContainText('universidade');
+  await expect(page.locator('h1')).toContainText('Construção sustentável');
 });
-test('mapa é ativado sob demanda e mostra atribuição aberta', async ({ page }) => {
+test('localizações ausentes são ocultadas e endereços reais continuam consultáveis', async ({
+  page,
+}) => {
   await page.goto('/escolas');
-  await page.getByRole('button', { name: 'Explorar o mapa' }).click();
-  await expect(page.locator('.leaflet-container')).toBeVisible();
-  await expect(page.locator('.leaflet-control-attribution')).toContainText('OpenStreetMap');
+  await expect(page.getByRole('button', { name: 'Explorar o mapa' })).toHaveCount(0);
+  await expect(page.locator('.map-frame')).toHaveCount(0);
+  await expect(page.locator('.school-row a')).toHaveCount(62);
+  await expect(page.locator('.school-row a').first()).toHaveAttribute(
+    'href',
+    /openstreetmap.org\/search\?query=/,
+  );
+});
+
+test('conteúdo público oculta notas internas, estimativas e resultados ausentes', async ({
+  page,
+}) => {
+  for (const route of [
+    '/',
+    '/projeto',
+    '/escolas',
+    '/impacto',
+    '/materiais',
+    '/equipe',
+    '/sustentabilidade/residuo-material',
+  ]) {
+    const response = await page.goto(route);
+    const text = await page.locator('main').innerText();
+    expect(text).not.toMatch(
+      /GPT|gerad[oa] por IA|a registrar|a validar|falta completar|dado estimado|~200|204 mensagens|Casa da Terra|UNIFEI|Acervo em construção|aguardam atualização|serão adicionados|Manter neste status|Frente prioritária|possibilidade futura/i,
+    );
+    expect(await response!.text()).not.toContain('Manter neste status');
+    await expect(page.getByRole('link', { name: 'Casa da Terra' })).toHaveCount(0);
+  }
+  await page.goto('/impacto');
+  await expect(page.locator('.metric')).toHaveCount(3);
+  await expect(page.getByRole('heading', { name: 'Atividades realizadas' })).toHaveCount(0);
+  await expect(page.getByText('Participações de estudantes', { exact: true })).toHaveCount(0);
+  await page.goto('/escolas');
+  await expect(page.getByRole('option', { name: 'Possibilidade futura', exact: true })).toHaveCount(
+    0,
+  );
+  await page.getByLabel('Etapa do diálogo').selectOption('respondeu');
+  await expect(page.locator('.school-row')).toHaveCount(37);
 });

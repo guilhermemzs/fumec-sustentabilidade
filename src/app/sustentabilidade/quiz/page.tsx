@@ -9,8 +9,8 @@ export default function Page() {
     <>
       <PageIntro
         eyebrow="APRENDER BRINCANDO · 4 PERGUNTAS"
-        title="Uma pergunta leva a outra."
-        description="Explore o que você aprendeu sobre água, materiais e escolhas sustentáveis. O quiz não coleta dados nem envia suas respostas."
+        title="Quiz de sustentabilidade"
+        description="Quatro perguntas sobre água e sustentabilidade, com explicações para cada resposta."
       />
       <div className="container content-space prose">
         <Quiz />

@@ -37,14 +37,9 @@ export function ContactForm({ enabled }: { enabled: boolean }) {
       setPending(false);
     }
   }
+  if (!enabled) return null;
   return (
     <form onSubmit={submit}>
-      {!enabled ? (
-        <div className="notice warning">
-          O recebimento de mensagens está em configuração. Nenhuma mensagem será enviada enquanto o
-          canal estiver indisponível.
-        </div>
-      ) : null}
       <label className="field">
         Seu nome
         <input
