@@ -118,8 +118,7 @@ export default async function Home() {
           </div>
           <TeamPortraits members={data.members} />
           <p className="source-note">
-            Integrantes em um registro acadêmico anterior. O projeto atual reúne sete estudantes de
-            Engenharia Civil.
+            Equipe de sete estudantes de Engenharia Civil da Universidade FUMEC.
           </p>
         </section>
       ) : null}

@@ -42,8 +42,10 @@ test('ECMA publica os retratos na ordem informada e preserva os estados do levan
     'Guilherme Menezes',
     'Bernardo Lopes',
     'Luis Ladeira',
+    'Frederico Maders',
+    'Caio Augusto',
   ]);
-  await expect(page.locator('.member-portrait img')).toHaveCount(3);
+  await expect(page.locator('.member-portrait img')).toHaveCount(5);
   expect(
     await page
       .locator('.member-portrait img')
@@ -54,7 +56,12 @@ test('ECMA publica os retratos na ordem informada e preserva os estados do levan
         ),
       ),
   ).toBe(true);
-  await expect(page.locator('.team-names article')).toHaveCount(4);
+  await expect(page.locator('.team-names article')).toHaveCount(2);
+  await expect(page.locator('.portrait-pair h3')).toHaveText(['Frederico Maders', 'Caio Augusto']);
+  const left = await page.locator('.portrait-pair .member-portrait').first().boundingBox();
+  const right = await page.locator('.portrait-pair .member-portrait').last().boundingBox();
+  if (left!.y === right!.y) expect(left!.x).toBeLessThan(right!.x);
+  else expect(left!.y).toBeLessThan(right!.y);
   await page.goto('/escolas');
   await expect(page.locator('.school-row')).toHaveCount(62);
   await page.getByRole('searchbox').fill('Maria Modesta');
@@ -152,12 +159,18 @@ test('menu navega para o projeto em desktop e celular', async ({ page }, info) =
   await expect(page).toHaveURL(/\/projeto$/);
   await expect(page.locator('h1')).toContainText('Construção sustentável');
 });
-test('localizações ausentes são ocultadas e endereços reais continuam consultáveis', async ({
-  page,
-}) => {
+test('mapa regional funciona sem inventar localizações individuais', async ({ page }) => {
   await page.goto('/escolas');
-  await expect(page.getByRole('button', { name: 'Explorar o mapa' })).toHaveCount(0);
-  await expect(page.locator('.map-frame')).toHaveCount(0);
+  await expect(page.getByText('Raio de visualização: 5 km', { exact: true })).toBeVisible();
+  await expect(page.locator('.leaflet-container')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Explorar o mapa' }).click();
+  await expect(page.locator('.leaflet-container')).toBeVisible();
+  await expect(page.locator('.leaflet-control-attribution')).toContainText('OpenStreetMap');
+  await expect(page.locator('.leaflet-interactive')).toHaveCount(1);
+  await expect.poll(() => page.locator('.leaflet-tile-loaded').count()).toBeGreaterThan(0);
+  await page.locator('.leaflet-interactive').click({ force: true });
+  await expect(page.locator('.leaflet-popup-content')).toHaveText('Raio de visualização: 5 km');
+  await page.getByRole('button', { name: 'Zoom in' }).click();
   await expect(page.locator('.school-row a')).toHaveCount(62);
   await expect(page.locator('.school-row a').first()).toHaveAttribute(
     'href',

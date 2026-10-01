@@ -100,18 +100,20 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
 export function Territory({ schools }: { schools: School[] }) {
   const [active, setActive] = useState(false);
   const geolocated = schools.filter((s) => s.latitude !== null && s.longitude !== null);
-  if (!geolocated.length) return null;
   return (
     <section aria-labelledby="territory-heading">
       <p className="eyebrow">ESCOLAS</p>
-      <h2 id="territory-heading">Localização das instituições</h2>
+      <h2 id="territory-heading">
+        {geolocated.length ? 'Localização das instituições' : 'Mapa de Belo Horizonte'}
+      </h2>
+      {!geolocated.length ? <p className="meta-line">Raio de visualização: 5 km</p> : null}
       <div className="map-frame">
         {active ? (
           <Map schools={geolocated} />
         ) : (
           <div className="map-placeholder">
             <MapPin size={35} strokeWidth={1.2} />
-            <h3>Mapa das escolas</h3>
+            <h3>Explore a região</h3>
             <p>O OpenStreetMap recebe uma requisição do navegador ao carregar os mapas.</p>
             <button className="button secondary" onClick={() => setActive(true)}>
               Explorar o mapa

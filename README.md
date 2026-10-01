@@ -21,10 +21,10 @@ Neon é acessado somente no servidor. Vercel hospeda o aplicativo na região `gr
 - `/sustentabilidade/[slug]`: páginas educativas pré-renderizadas.
 - `/sustentabilidade/checklist`: nove temas, resultado educativo e impressão; respostas ficam na memória da página.
 - `/sustentabilidade/quiz`: quatro perguntas com explicações; sem envio de respostas.
-- `/escolas`: pesquisa e filtros de contato; endereços documentados e links OpenStreetMap. O mapa só aparece com coordenadas registradas.
+- `/escolas`: pesquisa e filtros de contato; endereços documentados e links OpenStreetMap. O mapa mostra Belo Horizonte com um raio de visualização de 5 km quando não há coordenadas de escolas; só usa marcadores individuais para coordenadas cadastradas.
 - `/impacto`: mobilização, cadastros, alinhamentos e participações após atividades concluídas.
 - `/materiais`: apresentação original do grupo (nove páginas), mais arquivos explicitamente publicados na gestão.
-- `/equipe`: sete nomes provenientes do material fornecido; retratos de Guilherme Menezes, Bernardo Lopes e Luis Ladeira, enquadrados na foto original por CSS, preservando os rostos. Os três também aparecem na página inicial.
+- `/equipe`: sete nomes provenientes do material fornecido; retratos de Guilherme Menezes, Bernardo Lopes e Luis Ladeira na foto original, e fotos individuais de Frederico Maders e Caio Augusto. Enquadramento por CSS, preservando as imagens; Frederico fica à esquerda e Caio à direita na nova linha. Os cinco aparecem também na página inicial.
 - `/contato`: consentimento, validação, armazenamento privado e proteção contra abuso.
 - `/privacidade`: finalidades, fornecedores, gestão de dados e cuidados com menores.
 - `/admin`: escolas, coordenadas, estados, contatos institucionais como eventos, atividades e alcance agregado, materiais, integrantes, mensagens e feedbacks.
@@ -99,4 +99,6 @@ O alcance só é mostrado para atividades realizadas com data de conclusão. Uma
 
 Em 01/10/2026, a página Casa da Terra, a cartilha e o checklist em PDF foram retirados da publicação, inclusive seus links e entradas no sitemap. Os arquivos e o gerador foram preservados em `../../work/unpublished-2026-10-01/`, fora do diretório publicado. Esses endereços retornam 404. O checklist e o quiz online permanecem educativos, e os módulos incluem referências consultáveis da apresentação original, Copasa, Funasa, ProjetEEE e MME/CEPEL.
 
-Datas e resultados novos devem ser documentados antes da publicação. Funções de integrantes, coordenadas e arquivos adicionais ficam ocultos quando ausentes. Revisões e pendências pertencem à gestão, não às páginas públicas.
+Datas e resultados novos devem ser documentados antes da publicação. Funções de integrantes, marcadores individuais sem coordenadas e arquivos adicionais ficam ocultos quando ausentes. Revisões e pendências pertencem à gestão, não às páginas públicas.
+
+Em 01/10/2026, a pedido do usuário, o mapa regional foi reativado com círculo de 5 km como referência de navegação, sem representar alcance ou área atendida. A consulta confirmou 62 escolas públicas e nenhuma com coordenadas. `scripts/update-team-photos.ts` atualiza somente os dois integrantes identificados, preserva seus IDs, cria backup local e verifica a quantidade de membros. Execute sem `--apply` para conferir a prévia.

@@ -17,12 +17,10 @@ export default async function Page() {
           {data.stats.replies} escolas com resposta · {data.stats.alignment} em alinhamento ·{' '}
           {data.stats.meetings} com reunião realizada
         </p>
+        <div className="section">
+          <Territory schools={data.schools} />
+        </div>
         <SchoolDirectory schools={data.schools} />
-        {data.schools.some((s) => s.latitude !== null && s.longitude !== null) ? (
-          <div className="section">
-            <Territory schools={data.schools} />
-          </div>
-        ) : null}
       </div>
       <Invite />
     </>

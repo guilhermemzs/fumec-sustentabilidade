@@ -22,6 +22,9 @@ async function main() {
     await page
       .locator('.team-portraits')
       .screenshot({ path: '../../work/qa/retratos-' + mode + '.png' });
+    await page
+      .locator('.portrait-pair')
+      .screenshot({ path: '../../work/qa/novos-retratos-' + mode + '.png' });
     for (const route of ['impacto', 'materiais', 'escolas']) {
       await page.goto((process.env.TEST_BASE_URL || 'http://localhost:3000') + '/' + route, {
         waitUntil: 'networkidle',
@@ -30,6 +33,13 @@ async function main() {
         path: '../../work/qa/' + route + '-' + mode + '.png',
         fullPage: true,
       });
+      if (route === 'escolas') {
+        await page.getByRole('button', { name: 'Explorar o mapa' }).click();
+        await page.locator('.leaflet-tile-loaded').first().waitFor();
+        await page
+          .locator('.map-frame')
+          .screenshot({ path: '../../work/qa/mapa-' + mode + '.png' });
+      }
     }
     await context.close();
   }

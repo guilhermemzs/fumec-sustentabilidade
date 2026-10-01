@@ -15,6 +15,17 @@ export default function TerritoryMap({ schools }: { schools: School[] }) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 18,
       }).addTo(map);
+      if (!schools.length) {
+        const viewCircle = L.circle([-19.92, -43.94], {
+          radius: 5000,
+          color: '#537349',
+          weight: 2,
+          fillOpacity: 0.06,
+        })
+          .addTo(map)
+          .bindPopup('Raio de visualização: 5 km');
+        map.fitBounds(viewCircle.getBounds(), { padding: [20, 20] });
+      }
       schools.forEach((s) => {
         if (s.latitude === null || s.longitude === null || !map) return;
         const popup = document.createElement('div');
@@ -51,7 +62,11 @@ export default function TerritoryMap({ schools }: { schools: School[] }) {
     <div
       ref={ref}
       style={{ height: '100%', width: '100%' }}
-      aria-label="Mapa de Belo Horizonte e instituições com coordenadas validadas"
+      aria-label={
+        schools.length
+          ? 'Mapa das instituições com coordenadas cadastradas'
+          : 'Mapa de Belo Horizonte com raio de visualização de 5 km'
+      }
     />
   );
 }

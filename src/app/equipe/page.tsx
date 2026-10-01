@@ -17,10 +17,7 @@ export default async function Page() {
       />
       <div className="container content-space">
         <TeamPortraits members={d.members} eager />
-        <p className="source-note">
-          Registro acadêmico dos integrantes em uma apresentação anterior. Da esquerda para a
-          direita na imagem original: Guilherme Menezes, Bernardo Lopes e Luis Ladeira.
-        </p>
+        <p className="source-note">Fotos fornecidas pelos integrantes da equipe.</p>
         {otherMembers.length ? (
           <section className="team-more" aria-labelledby="team-more-title">
             <p className="eyebrow">ENGENHARIA CIVIL · FUMEC</p>

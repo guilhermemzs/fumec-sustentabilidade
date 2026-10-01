@@ -48,7 +48,8 @@ export default function Page() {
         <h2>Navegação e mapa</h2>
         <p>
           O checklist e o quiz mantêm respostas apenas na página, sem enviá-las ao servidor. Os
-          links de consulta de endereços abrem o OpenStreetMap. As fontes são servidas pela própria
+          links de consulta de endereços abrem o OpenStreetMap. O mapa da página carrega recursos
+          desse serviço quando ativado pelo visitante. As fontes são servidas pela própria
           aplicação, sem consultar o Google Fonts durante a visita.
         </p>
         <p>
