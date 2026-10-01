@@ -15,7 +15,7 @@ async function main() {
   let activityId: string | undefined;
   try {
     const [count] = await db.select({ count: sql<number>`count(*)::int` }).from(schools);
-    assert.equal(count.count, 39);
+    assert.equal(count.count, 62);
     const response = await fetch(base + '/api/contact', {
       method: 'POST',
       headers: { Origin: origin, 'Content-Type': 'application/json' },
@@ -62,15 +62,13 @@ async function main() {
       .returning();
     activityId = activity.id;
     await assert.rejects(() =>
-      db
-        .insert(activities)
-        .values({
-          schoolId: first[0].id,
-          title: 'QA inválido',
-          status: 'completed',
-          completedAt: new Date(),
-          studentsReached: -1,
-        }),
+      db.insert(activities).values({
+        schoolId: first[0].id,
+        title: 'QA inválido',
+        status: 'completed',
+        completedAt: new Date(),
+        studentsReached: -1,
+      }),
     );
     const feedbackResponse = await fetch(base + '/api/feedback', {
       method: 'POST',

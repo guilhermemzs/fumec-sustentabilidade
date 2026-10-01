@@ -15,6 +15,13 @@ async function main() {
     });
     await page.screenshot({ path: '../../work/qa/home-' + mode + '.png', fullPage: true });
     await page.screenshot({ path: '../../work/qa/hero-' + mode + '.png' });
+    await page.goto((process.env.TEST_BASE_URL || 'http://localhost:3000') + '/equipe', {
+      waitUntil: 'networkidle',
+    });
+    await page.screenshot({ path: '../../work/qa/equipe-' + mode + '.png', fullPage: true });
+    await page
+      .locator('.team-portraits')
+      .screenshot({ path: '../../work/qa/retratos-' + mode + '.png' });
     await context.close();
   }
   await browser.close();

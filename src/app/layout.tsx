@@ -11,8 +11,8 @@ const serif = Newsreader({ subsets: ['latin'], variable: '--font-heading', displ
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: 'Entre — Construção sustentável na escola | Extensão FUMEC',
-    template: '%s | Entre · Extensão FUMEC',
+    default: 'ECMA — Entre Construção e Meio Ambiente | Extensão FUMEC',
+    template: '%s | ECMA · Extensão FUMEC',
   },
   description:
     'Projeto de Extensão de estudantes de Engenharia Civil da Universidade FUMEC: construção sustentável, educação ambiental e diálogo com escolas de Belo Horizonte e região.',
@@ -24,7 +24,11 @@ export const metadata: Metadata = {
     'Sustentabilidade nas escolas',
     'Belo Horizonte',
   ],
-  openGraph: { type: 'website', locale: 'pt_BR', siteName: 'Entre · Universidade & escola' },
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    siteName: 'ECMA · Entre Construção e Meio Ambiente',
+  },
   twitter: { card: 'summary_large_image' },
 };
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {

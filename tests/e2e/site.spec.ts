@@ -32,6 +32,43 @@ test('diretório filtra sem transformar interesse em realização', async ({ pag
   await page.getByRole('searchbox').fill('Nenhuma escola com este nome');
   await expect(page.getByText('Nenhuma instituição corresponde aos filtros.')).toBeVisible();
 });
+test('ECMA publica os retratos na ordem informada e preserva os estados do levantamento', async ({
+  page,
+}) => {
+  await page.goto('/equipe');
+  await expect(
+    page.getByRole('link', { name: 'ECMA: Entre Construção e Meio Ambiente — início' }),
+  ).toBeVisible();
+  await expect(page.locator('.member-portrait h3')).toHaveText([
+    'Guilherme Menezes',
+    'Bernardo Lopes',
+    'Luis Ladeira',
+  ]);
+  await expect(page.locator('.member-portrait img')).toHaveCount(3);
+  expect(
+    await page
+      .locator('.member-portrait img')
+      .evaluateAll((images) =>
+        images.every(
+          (image) =>
+            (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0,
+        ),
+      ),
+  ).toBe(true);
+  await expect(page.locator('.team-names article')).toHaveCount(4);
+  await page.goto('/escolas');
+  await expect(page.locator('.school-row')).toHaveCount(62);
+  await page.getByRole('searchbox').fill('Maria Modesta');
+  await expect(page.locator('.school-row')).toContainText('Reunião realizada');
+  await expect(page.locator('.school-row')).toContainText(
+    'Rua Doutor Júlio Otaviano Ferreira, 1085',
+  );
+  await page.getByRole('searchbox').fill('Cidade Nova');
+  await expect(page.locator('.school-row')).toHaveCount(1);
+  await page.getByRole('searchbox').fill('');
+  await page.getByLabel('Etapa do diálogo').selectOption('em_alinhamento');
+  await expect(page.locator('.school-row')).toHaveCount(3);
+});
 test('checklist calcula observações e pode recomeçar', async ({ page }) => {
   await page.goto('/sustentabilidade/checklist');
   await page.locator('.checklist-item select').first().selectOption('sim');
@@ -76,7 +113,7 @@ test('APIs rejeitam origem externa e dados inválidos', async ({ request, baseUR
   expect(feedback.status()).toBe(400);
 });
 test('acessibilidade básica em início, escolas, contato e checklist', async ({ page }) => {
-  for (const route of ['/', '/escolas', '/contato', '/sustentabilidade/checklist']) {
+  for (const route of ['/', '/equipe', '/escolas', '/contato', '/sustentabilidade/checklist']) {
     await page.goto(route);
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
@@ -91,7 +128,11 @@ test('acessibilidade básica em início, escolas, contato e checklist', async ({
   }
 });
 test('materiais reais e metadados de publicação', async ({ request }) => {
-  for (const file of ['/materiais/cartilha.pdf', '/materiais/checklist.pdf']) {
+  for (const file of [
+    '/materiais/cartilha.pdf',
+    '/materiais/checklist.pdf',
+    '/materiais/apresentacao-construcao-sustentavel-2026.pdf',
+  ]) {
     const r = await request.get(file);
     expect(r.status()).toBe(200);
     expect((await r.body()).subarray(0, 4).toString()).toBe('%PDF');

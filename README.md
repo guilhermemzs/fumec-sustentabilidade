@@ -1,4 +1,4 @@
-# Entre · universidade & escola
+# ECMA · Entre Construção e Meio Ambiente
 
 Plataforma independente para a segunda etapa do Projeto de Extensão 2026, desenvolvido por sete estudantes de Engenharia Civil da Universidade FUMEC. Tema: construção sustentável e educação ambiental em escolas.
 
@@ -24,8 +24,8 @@ Neon é acessado somente no servidor. Vercel hospeda o aplicativo na região `gr
 - `/escolas`: pesquisa e filtros de estado; mapa Leaflet/OpenStreetMap ativado pelo visitante.
 - `/impacto`: mobilização, cadastros, alinhamentos e participações após atividades concluídas.
 - `/casa-da-terra`: síntese de referência externa da UNIFEI, explicitamente distinta do trabalho do grupo.
-- `/materiais`: cartilha de 14 páginas e checklist de duas páginas, mais arquivos publicados na gestão.
-- `/equipe`: estrutura para publicar integrantes autorizados; não contém nomes inventados.
+- `/materiais`: apresentação original do grupo (nove páginas), cartilha ECMA de 14 páginas e checklist de duas páginas, mais arquivos publicados na gestão.
+- `/equipe`: sete nomes provenientes do material fornecido; retratos de Guilherme Menezes, Bernardo Lopes e Luis Ladeira, enquadrados na foto original por CSS, preservando os rostos. Os três também aparecem na página inicial.
 - `/contato`: consentimento, validação, armazenamento privado e proteção contra abuso.
 - `/privacidade`: finalidades, fornecedores, gestão de dados e cuidados com menores.
 - `/admin`: escolas, coordenadas, estados, contatos institucionais como eventos, atividades e alcance agregado, materiais, integrantes, mensagens e feedbacks.
@@ -37,9 +37,13 @@ SEO inclui titles, descriptions, canonical, Open Graph gerado, sitemap, robots, 
 
 12 tabelas: `schools`, `school_engagements`, `contact_events`, `classes`, `activities`, `impact_metrics`, `educational_materials`, `feedback`, `contact_submissions`, `team_members`, `site_content`, `rate_limits`.
 
-Há chaves estrangeiras, estados enumerados, índices e constraints para coordenadas, notas, quantidades não negativas, anonimato e data de conclusão. Migrations versionadas em `drizzle/`: `0000_strong_starhawk.sql` e `0001_silky_terror.sql` (registro separado da data de consentimento).
+Há chaves estrangeiras, estados enumerados, índices e constraints para coordenadas, notas, quantidades não negativas, anonimato e data de conclusão. Migrations versionadas em `drizzle/`: `0000_strong_starhawk.sql`, `0001_silky_terror.sql` (data de consentimento) e `0002_nostalgic_randall_flagg.sql` (endereço, UF, CEP e data do levantamento).
 
-O seed idempotente cadastra **39 instituições fornecidas no prompt**, incluindo **três frentes em alinhamento**, e uma estimativa de 200 contatos, marcada como não verificada. Ele não importa Gmail, contatos pessoais, números de telefone, e-mails de responsáveis, estudantes ou resultados de atividades. As 39 instituições são um recorte dos retornos, não a totalidade da mobilização. Coordenadas ficam nulas. Os municípios são omitidos quando não foram confirmados no contexto.
+O levantamento de **30/09/2026** substitui o recorte inicial: **62 escolas com resposta**, 18 interessadas, 32 possibilidades futuras, cinco com retorno inicial, três em alinhamento, três indisponíveis neste ciclo e uma com reunião realizada. CSV e aba Escolas do XLSX foram comparados campo a campo (62 registros iguais; a planilha possui uma coluna adicional de origem). O snapshot público está em `src/data/school-survey.json`, sem contatos pessoais. Endereços, bairros, município, UF e CEP disponíveis foram importados. Coordenadas continuam nulas; cada cartão permite consultar o endereço no OpenStreetMap.
+
+A reunião da Maria Modesta Cravo está registrada em 30/09/2026 às 12h40, com fuso de São Paulo. Isso não significa atividade confirmada ou alcance realizado. A estimativa de aproximadamente 200 escolas contatadas permanece separada das 62 respostas documentadas. Nenhum conteúdo de caixa de e-mail, telefone ou contato pessoal foi importado.
+
+O seed é idempotente para novas instalações. Para atualizar a base antiga: `npm run db:migrate`, `npm run db:import-survey` (prévia) e `npm run db:import-survey -- --apply`. A importação cria backup local de escolas, estados e integrantes em `work/backups` fora do repositório, aplica as alterações em transação, preserva coordenadas e não repete um snapshot já aplicado. Não exclui instituições; se encontrar registros fora da fonte, exige revisão antes de importar.
 
 O identificador institucional inicial deriva do nome normalizado. Confira registros antes de adicionar escolas: nomes distintos ou abreviações podem se referir à mesma instituição. A deduplicação formal da campanha permanece pendente. Eventos de contato pertencem ao cadastro único da instituição e permitem consultas exatas após importação validada. O número 204 é uma contagem de mensagens, nunca utilizado como quantidade de escolas.
 
@@ -90,10 +94,10 @@ Para testar uma publicação: defina `TEST_BASE_URL` com o domínio. O teste de 
 
 ## Pendências de conteúdo
 
-- Confirmar nomes e funções dos sete integrantes e autorizações de publicação.
+- Confirmar funções específicas dos integrantes, se desejarem publicá-las. Os nomes e a foto fornecidos já estão publicados; Luis Ladeira segue a identificação mais recente do usuário.
 - Fornecer documento acadêmico original da Casa da Terra e referência bibliográfica completa.
-- Fornecer apresentações e registros originais do grupo, sem placeholders.
-- Validar coordenadas, municípios e deduplicação completa da campanha.
+- Fornecer novos registros originais das atividades. A apresentação de Construção Sustentável já está publicada sem alteração do arquivo fornecido.
+- Validar coordenadas e deduplicação completa da campanha. Os municípios e endereços do levantamento de 62 escolas já estão cadastrados.
 - Registrar datas confirmadas, atividades realizadas, participações e resultados reais.
 - Revisar academicamente a cartilha antes de utilizá-la como material oficial do grupo.
 

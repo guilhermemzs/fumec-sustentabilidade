@@ -7,7 +7,13 @@ test('cadastro institucional é único e não converte interesse em parceria', (
   const stats = summarizeSchools(initialSchools);
   assert.equal(stats.alignment, 3);
   assert.equal(stats.participants, 0);
-  assert.equal(stats.registered, 39);
+  assert.equal(stats.registered, 62);
+  assert.equal(stats.meetings, 1);
+  assert.equal(stats.replies, 62);
+  assert.equal(initialSchools.filter((s) => s.status === 'interessada').length, 18);
+  assert.equal(initialSchools.filter((s) => s.status === 'possibilidade_futura').length, 32);
+  assert.equal(initialSchools.filter((s) => s.status === 'respondeu').length, 5);
+  assert.equal(initialSchools.filter((s) => s.status === 'indisponivel').length, 3);
   assert.equal(initialSchools.filter((s) => s.latitude !== null).length, 0);
 });
 test('chave institucional normaliza acentos e espaços', () => {

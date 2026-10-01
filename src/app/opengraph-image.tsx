@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-export const alt = 'Entre · Engenharia que sai da universidade e chega à escola.';
+export const alt = 'ECMA · Engenharia que sai da universidade e chega à escola.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export default function Image() {
@@ -16,7 +16,7 @@ export default function Image() {
         justifyContent: 'space-between',
       }}
     >
-      <div style={{ fontSize: 28, display: 'flex' }}>ENTRE · UNIVERSIDADE & ESCOLA</div>
+      <div style={{ fontSize: 28, display: 'flex' }}>ECMA · ENTRE CONSTRUÇÃO E MEIO AMBIENTE</div>
       <div
         style={{
           display: 'flex',

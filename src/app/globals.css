@@ -82,7 +82,7 @@ button:disabled {
   font-size: 38px;
   line-height: 1;
   font-weight: 600;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
 }
 .brand-dot {
   color: #6d8a52;
@@ -1285,6 +1285,126 @@ p {
   * {
     transition: none !important;
     animation: none !important;
+  }
+}
+.team-portraits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.member-portrait {
+  margin: 0;
+  min-width: 0;
+}
+.portrait-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #dfe3d8;
+}
+.portrait-frame img {
+  position: absolute;
+  top: -63.8889%;
+  left: var(--portrait-left);
+  width: 474.0741%;
+  height: 266.6667%;
+  max-width: none;
+  object-fit: cover;
+}
+.member-portrait figcaption {
+  padding: 20px 0 0;
+}
+.member-portrait h3 {
+  margin: 0 0 5px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 21px;
+}
+.member-portrait p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.team-more {
+  margin: 65px 0;
+}
+.team-names {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+.team-names article {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+.team-names h3 {
+  font-size: 25px;
+  margin-bottom: 6px;
+}
+.team-names p {
+  font-size: 13px;
+  color: var(--muted);
+}
+.team-context {
+  padding-block: 25px;
+}
+.university-signature {
+  background: #193d2b;
+  padding: 22px 25px;
+  width: min(100%, 310px);
+  margin-bottom: 24px;
+}
+.university-signature img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.university-signature span {
+  display: block;
+  margin-top: 15px;
+  color: #f6f5ed;
+  font-size: 8px;
+  letter-spacing: 0.6px;
+}
+.school-address {
+  margin-top: 14px;
+  max-width: 420px;
+}
+.school-address p {
+  font-size: 12px;
+  line-height: 1.65;
+  margin-bottom: 4px;
+}
+.school-address a {
+  display: inline-block;
+  margin-top: 7px;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 1000px) {
+  .team-portraits {
+    gap: 16px;
+  }
+  .member-portrait h3 {
+    font-size: 18px;
+  }
+  .team-names {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .team-portraits {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+  .team-names {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .member-portrait h3 {
+    font-size: 24px;
   }
 }
 @media print {

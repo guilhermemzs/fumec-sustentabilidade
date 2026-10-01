@@ -24,7 +24,7 @@ def text(c,s,y,style='body',width=W-2*M,x=M,gap=16):
  p=Paragraph(s.replace('–','-').replace('—','-'),styles[style]); _,h=p.wrap(width,H);p.drawOn(c,x,y-h);return y-h-gap
 def page(c,n,label):
  c.setFillColor(PAPER);c.rect(0,0,W,H,fill=1,stroke=0)
- c.setFillColor(INK);c.setFont('Body',10);c.drawString(M,H-42,'ENTRE.  /  UNIVERSIDADE & ESCOLA')
+ c.setFillColor(INK);c.setFont('Body',10);c.drawString(M,H-42,'ECMA.  /  ENTRE CONSTRUÇÃO E MEIO AMBIENTE')
  c.setStrokeColor(LINE);c.line(M,H-58,W-M,H-58);c.line(M,50,W-M,50)
  c.setFillColor(MUTED);c.setFont('Body',8);c.drawString(M,33,'Extensão 2026 - Engenharia Civil - Estudantes da Universidade FUMEC');c.drawRightString(W-M,33,f'{n:02d}')
  c.setFillColor(INK);c.setFont('Body',9);c.drawString(M,H-91,label.upper());return H-115
@@ -33,7 +33,7 @@ def box(c,heading,body,y):
  total=h+68;c.setFillColor(HexColor('#e5ead8'));c.rect(M,y-total,W-2*M,total,fill=1,stroke=0)
  text(c,heading,y-16,'heading',W-2*M-32,M+16);p.drawOn(c,M+16,y-total+15);return y-total-24
 
-c=canvas.Canvas(os.path.join(out,'cartilha.pdf'),pagesize=(W,H));c.setTitle('Construção sustentável na escola - Entre');c.setAuthor('Projeto de Extensão - estudantes de Engenharia Civil FUMEC')
+c=canvas.Canvas(os.path.join(out,'cartilha.pdf'),pagesize=(W,H));c.setTitle('Construção sustentável na escola - ECMA');c.setAuthor('Projeto de Extensão - estudantes de Engenharia Civil FUMEC')
 y=page(c,1,'Cartilha educativa / segunda etapa')
 y=text(c,'Construir um futuro<br/>começa na escola.',y-25,'title')
 y=text(c,'Engenharia que sai da universidade e chega à escola.',y-4,'heading')
@@ -59,7 +59,7 @@ y=text(c,'Cada escola possui características e necessidades próprias. Este mat
 y=text(c,'Casa da Terra: uma referência externa',y,'heading')
 y=text(c,'O contexto fornecido pelo grupo descreve um estudo associado à UNIFEI, com solo-cimento e incorporação de vidro moído. Não é um projeto do grupo da FUMEC. Os resultados dependem da mistura e dos ensaios; não se deve concluir que vidro sempre melhora um tijolo. O documento original e sua referência completa ainda precisam ser disponibilizados.',y)
 y=text(c,'Fonte e autoria do material educativo',y,'heading')
-y=text(c,'Conteúdo produzido para a plataforma Entre, a partir do contexto e dos temas fornecidos pelo grupo do Projeto de Extensão 2026. Síntese educativa, sujeita à revisão acadêmica pelos responsáveis.',y)
+y=text(c,'Conteúdo produzido para a plataforma ECMA, a partir do contexto e dos temas fornecidos pelo grupo do Projeto de Extensão 2026. Síntese educativa, sujeita à revisão acadêmica pelos responsáveis.',y)
 y=text(c,'Instituições e consulta online',y,'heading')
 y=text(c,'Universidade FUMEC: www.fumec.br<br/>Universidade Federal de Itajubá: unifei.edu.br<br/>Plataforma: fumec-sustentabilidade.vercel.app<br/><br/>Os links institucionais não substituem a referência completa de pesquisas e normas.',y)
 c.showPage();c.save()

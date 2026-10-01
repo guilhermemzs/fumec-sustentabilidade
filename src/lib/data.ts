@@ -4,6 +4,7 @@ import { eq } from 'drizzle-orm';
 import { getDb } from '@/db';
 import { schools, engagements, activities, materials, metrics, teamMembers } from '@/db/schema';
 import { initialSchools, summarizeSchools, type School, referenceDate } from './project';
+import { documentedMembers } from './team';
 export const getProjectData = cache(async () => {
   const db = getDb();
   if (db) {
@@ -14,6 +15,12 @@ export const getProjectData = cache(async () => {
             id: schools.id,
             name: schools.name,
             city: schools.city,
+            address: schools.address,
+            neighborhood: schools.neighborhood,
+            state: schools.state,
+            postalCode: schools.postalCode,
+            educationType: schools.educationType,
+            snapshotDate: schools.snapshotDate,
             latitude: schools.latitude,
             longitude: schools.longitude,
             publicVisibility: schools.publicVisibility,
@@ -73,7 +80,7 @@ export const getProjectData = cache(async () => {
     stats: summarizeSchools(initialSchools),
     activities: [],
     materials: [],
-    members: [],
+    members: documentedMembers,
     metrics: [],
     completed: null,
     students: null,

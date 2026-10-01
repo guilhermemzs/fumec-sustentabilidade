@@ -20,7 +20,7 @@ export function Navigation() {
           href="/"
           className="brand"
           onClick={() => setOpen(false)}
-          aria-label="Entre: universidade e escola — início"
+          aria-label="ECMA: Entre Construção e Meio Ambiente — início"
         >
           <span className="brand-mark" aria-hidden="true">
             <i />
@@ -29,9 +29,9 @@ export function Navigation() {
           </span>
           <span>
             <strong>
-              entre<span className="brand-dot">.</span>
+              ECMA<span className="brand-dot">.</span>
             </strong>
-            <small>universidade & escola</small>
+            <small>construção & meio ambiente</small>
           </span>
         </Link>
         <button

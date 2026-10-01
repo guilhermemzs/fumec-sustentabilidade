@@ -12,7 +12,11 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
   const [status, setStatus] = useState('all');
   const filtered = schools.filter(
     (s) =>
-      s.name.toLocaleLowerCase('pt-BR').includes(query.toLocaleLowerCase('pt-BR')) &&
+      [s.name, s.neighborhood, s.city, s.address]
+        .filter(Boolean)
+        .join(' ')
+        .toLocaleLowerCase('pt-BR')
+        .includes(query.toLocaleLowerCase('pt-BR')) &&
       (status === 'all' || s.status === status),
   );
   return (
@@ -22,7 +26,7 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
           Buscar instituição
           <input
             type="search"
-            placeholder="Digite o nome da escola"
+            placeholder="Nome, bairro ou endereço"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -51,8 +55,25 @@ export function SchoolDirectory({ schools }: { schools: School[] }) {
                 <h3>{s.name}</h3>
                 <p>
                   {s.city ?? 'Município a validar'}
+                  {s.state ? `/${s.state}` : ''}
                   {s.priority ? ' · Frente prioritária' : ''}
                 </p>
+                {s.address ? (
+                  <div className="school-address">
+                    <p>
+                      {s.address}
+                      {s.neighborhood ? ` · ${s.neighborhood}` : ''}
+                    </p>
+                    {s.postalCode ? <p>CEP {s.postalCode}</p> : null}
+                    <a
+                      href={`https://www.openstreetmap.org/search?query=${encodeURIComponent([s.address, s.neighborhood, s.city, s.state, 'Brasil'].filter(Boolean).join(', '))}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Consultar endereço no mapa ↗
+                    </a>
+                  </div>
+                ) : null}
               </div>
               <p>{s.summary}</p>
               <span
@@ -120,7 +141,7 @@ export function Territory({ schools }: { schools: School[] }) {
       <p className="source-note">
         {geolocated.length
           ? `${geolocated.length} instituições com coordenadas cadastradas.`
-          : 'As coordenadas das escolas ainda não foram validadas. Não posicionamos marcadores aproximados como se fossem localizações reais.'}{' '}
+          : 'Os endereços do levantamento estão nos cartões, com links para consulta no mapa. Marcadores serão incluídos após a validação das coordenadas.'}{' '}
         O círculo indica apenas a região de origem, sem representar o endereço da Universidade ou
         uma escola atendida.
       </p>

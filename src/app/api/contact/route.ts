@@ -33,14 +33,12 @@ export async function POST(request: Request) {
         { message: 'Limite de mensagens atingido. Tente novamente em uma hora.' },
         { status: 429 },
       );
-    await db
-      .insert(submissions)
-      .values({
-        name: parsed.data.name,
-        organization: parsed.data.organization,
-        email: parsed.data.email.toLowerCase(),
-        message: parsed.data.message,
-      });
+    await db.insert(submissions).values({
+      name: parsed.data.name,
+      organization: parsed.data.organization,
+      email: parsed.data.email.toLowerCase(),
+      message: parsed.data.message,
+    });
     return NextResponse.json(
       { message: 'Mensagem recebida. O grupo poderá responder pelo e-mail informado.' },
       { status: 201 },

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { timeline } from '@/lib/project';
+import { UniversitySignature } from './university-signature';
 export function PageIntro({
   eyebrow,
   title,
@@ -73,13 +74,16 @@ export function Footer() {
     <footer className="footer container">
       <div className="footer-top">
         <div>
-          <span className="footer-brand">entre.</span>
+          <span className="footer-brand">ECMA.</span>
           <p>
+            Entre Construção e Meio Ambiente
+            <br />
             Engenharia que sai da universidade
             <br />e chega à escola.
           </p>
         </div>
         <div>
+          <UniversitySignature />
           <p className="eyebrow">PROJETO DE EXTENSÃO · 2026</p>
           <p>
             Estudantes de Engenharia Civil

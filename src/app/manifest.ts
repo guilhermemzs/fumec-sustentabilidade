@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Entre · Construção sustentável na escola',
-    short_name: 'Entre',
+    name: 'ECMA · Entre Construção e Meio Ambiente',
+    short_name: 'ECMA',
     lang: 'pt-BR',
     description: 'Projeto de Extensão · Engenharia Civil · FUMEC',
     start_url: '/',

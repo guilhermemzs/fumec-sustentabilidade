@@ -14,9 +14,14 @@ export default async function Page() {
       'Estimativa de contexto. 204 mensagens não equivalem a 204 instituições únicas.',
     ],
     [
-      String(d.stats.registered),
-      'Instituições neste recorte',
-      'Cadastros únicos provenientes dos retornos informados, sem representar toda a campanha.',
+      String(d.stats.replies),
+      'Escolas com resposta',
+      'Levantamento de 30/09/2026 fornecido pelo grupo. Este recorte não representa todas as escolas contatadas.',
+    ],
+    [
+      String(d.stats.meetings),
+      'Reuniões realizadas',
+      'A reunião na Maria Modesta Cravo ocorreu em 30/09, às 12h40. Não equivale a uma atividade confirmada ou realizada.',
     ],
     [
       String(d.stats.alignment),
@@ -50,7 +55,7 @@ export default async function Page() {
       />
       <div className="container content-space">
         <div className="notice">
-          Referência inicial: 30 de setembro de 2026.{' '}
+          Levantamento atualizado: 30 de setembro de 2026.{' '}
           {d.source === 'database'
             ? 'Indicadores de execução consultados no banco.'
             : 'Exibindo o registro institucional de referência; indicadores de execução aguardam atualização.'}

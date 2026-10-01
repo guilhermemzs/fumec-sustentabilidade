@@ -3,6 +3,7 @@ import { ArrowRight, Droplets, Wind, Layers3 } from 'lucide-react';
 import { SchoolDrawing } from '@/components/school-drawing';
 import { ActionLink, Invite, Timeline } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
+import { TeamPortraits } from '@/components/team-portraits';
 export const revalidate = 60;
 export const metadata = { alternates: { canonical: '/' } };
 export default async function Home() {
@@ -10,7 +11,7 @@ export default async function Home() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Entre · universidade & escola',
+    name: 'ECMA · Entre Construção e Meio Ambiente',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fumec-sustentabilidade.vercel.app',
     inLanguage: 'pt-BR',
     description:
@@ -64,9 +65,9 @@ export default async function Home() {
       <section className="fact-band" aria-label="Contexto da iniciativa">
         <div className="container facts">
           <div>
-            <strong>~200</strong>
+            <strong>{data.stats.replies}</strong>
             <span>
-              escolas contatadas<small>Estimativa da mobilização</small>
+              escolas com resposta<small>Levantamento de 30/09/2026</small>
             </span>
           </div>
           <div>
@@ -112,6 +113,24 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+      {data.members.some((m) => m.photoUrl) ? (
+        <section className="section container">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">ECMA · ENTRE CONSTRUÇÃO E MEIO AMBIENTE</p>
+              <h2>Por trás do projeto, pessoas.</h2>
+            </div>
+            <Link className="text-link" href="/equipe">
+              Conheça a equipe <ArrowRight size={18} />
+            </Link>
+          </div>
+          <TeamPortraits members={data.members} />
+          <p className="source-note">
+            Integrantes em um registro acadêmico anterior. O projeto atual reúne sete estudantes de
+            Engenharia Civil.
+          </p>
+        </section>
+      ) : null}
       <section className="learning-section section">
         <div className="container">
           <div className="section-heading">

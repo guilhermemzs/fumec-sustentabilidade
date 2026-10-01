@@ -39,14 +39,12 @@ export async function POST(request: Request) {
       );
     if (!(await consumeRateLimit(clientIp(request), 'feedback', 50)))
       return NextResponse.json({ message: 'Limite temporário atingido.' }, { status: 429 });
-    await db
-      .insert(feedback)
-      .values({
-        activityId: p.data.activityId,
-        rating: p.data.rating,
-        response: p.data.response,
-        anonymous: true,
-      });
+    await db.insert(feedback).values({
+      activityId: p.data.activityId,
+      rating: p.data.rating,
+      response: p.data.response,
+      anonymous: true,
+    });
     return NextResponse.json(
       { message: 'Obrigado. Sua avaliação anônima foi recebida.' },
       { status: 201 },

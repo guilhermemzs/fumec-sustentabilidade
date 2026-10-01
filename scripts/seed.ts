@@ -1,7 +1,8 @@
 import { config } from 'dotenv';
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
-import { schools, engagements, metrics } from '../src/db/schema';
+import { schools, engagements, metrics, teamMembers } from '../src/db/schema';
+import { documentedMembers } from '../src/lib/team';
 import { initialSchools, referenceDate } from '../src/lib/project';
 config({ path: '.env.local', quiet: true });
 async function main() {
@@ -15,6 +16,12 @@ async function main() {
         id: school.id,
         name: school.name,
         city: school.city,
+        address: school.address,
+        neighborhood: school.neighborhood,
+        educationType: school.educationType,
+        state: school.state,
+        postalCode: school.postalCode,
+        snapshotDate: school.snapshotDate,
         publicVisibility: school.publicVisibility,
       })
       .onConflictDoNothing();
@@ -25,20 +32,27 @@ async function main() {
         status: school.status,
         summary: school.summary,
         priority: school.priority,
+        meetingAt:
+          school.status === 'reuniao_realizada' ? new Date('2026-09-30T12:40:00-03:00') : null,
       })
       .onConflictDoNothing();
   }
+  const members = await db.select().from(teamMembers);
+  for (const member of documentedMembers) {
+    if (!members.some((m) => m.name === member.name)) {
+      const { name, course, role, photoUrl, published } = member;
+      await db.insert(teamMembers).values({ name, course, role, photoUrl, published });
+    }
+  }
   const existing = await db.select().from(metrics);
   if (!existing.some((m) => m.metric === 'contacted_estimate'))
-    await db
-      .insert(metrics)
-      .values({
-        metric: 'contacted_estimate',
-        value: 200,
-        referenceDate,
-        source: 'Contexto fornecido pelo grupo; estimativa, sem deduplicação completa.',
-        verified: false,
-      });
+    await db.insert(metrics).values({
+      metric: 'contacted_estimate',
+      value: 200,
+      referenceDate,
+      source: 'Contexto fornecido pelo grupo; estimativa, sem deduplicação completa.',
+      verified: false,
+    });
   console.log('Seed institucional aplicado; nenhum contato pessoal foi importado.');
 }
 main().catch(() => {

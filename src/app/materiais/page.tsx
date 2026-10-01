@@ -5,6 +5,13 @@ export const revalidate = 60;
 export const metadata = { title: 'Materiais educativos', alternates: { canonical: '/materiais' } };
 const localMaterials = [
   {
+    title: 'Apresentação · Construção Sustentável',
+    description:
+      'Apresentação original do grupo para o Projeto de Extensão 2026. Conceitos, práticas essenciais e sustentabilidade no cotidiano.',
+    href: '/materiais/apresentacao-construcao-sustentavel-2026.pdf',
+    type: 'PDF · APRESENTAÇÃO DO GRUPO · 9 PÁGINAS',
+  },
+  {
     title: 'Cartilha · Construção sustentável na escola',
     description:
       'Perguntas, conceitos e atividades para continuar o aprendizado. Material produzido para esta plataforma, em linguagem acessível.',
@@ -69,9 +76,8 @@ export default async function Page() {
         <div className="prose">
           <h2>Acervo em construção</h2>
           <p>
-            A apresentação original, o documento acadêmico Casa da Terra, registros autorizados de
-            atividades e o relatório final serão adicionados quando forem disponibilizados e
-            revisados pelo grupo.
+            O documento acadêmico Casa da Terra, registros autorizados de atividades e o relatório
+            final serão adicionados quando forem disponibilizados e revisados pelo grupo.
           </p>
           <p>
             Esta plataforma não oferece arquivos que ainda não existem. O estudo de caso pode ser

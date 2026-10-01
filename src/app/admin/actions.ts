@@ -84,14 +84,12 @@ export async function addSchool(f: FormData) {
   let ok = false;
   try {
     await db!.batch([
-      db!
-        .insert(schools)
-        .values({
-          id,
-          name: parsed.data.name,
-          city: parsed.data.city || null,
-          publicVisibility: false,
-        }),
+      db!.insert(schools).values({
+        id,
+        name: parsed.data.name,
+        city: parsed.data.city || null,
+        publicVisibility: false,
+      }),
       db!.insert(engagements).values({ schoolId: id, status: parsed.data.status }),
     ]);
     ok = true;
@@ -183,14 +181,12 @@ export async function registerContact(f: FormData) {
   if (!db || !parsed.success) finish(false);
   let ok = false;
   try {
-    await db!
-      .insert(contactEvents)
-      .values({
-        schoolId: parsed.data.schoolId,
-        channel: parsed.data.channel,
-        kind: parsed.data.kind,
-        occurredAt: new Date(parsed.data.date + 'T12:00:00-03:00'),
-      });
+    await db!.insert(contactEvents).values({
+      schoolId: parsed.data.schoolId,
+      channel: parsed.data.channel,
+      kind: parsed.data.kind,
+      occurredAt: new Date(parsed.data.date + 'T12:00:00-03:00'),
+    });
     ok = true;
   } catch {}
   finish(ok);

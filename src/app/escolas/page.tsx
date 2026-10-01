@@ -18,6 +18,11 @@ export default async function Page() {
           lista reúne um recorte dos retornos informados pelo grupo, não todas as escolas da
           campanha.
         </div>
+        <p className="meta-line">
+          Levantamento de 30/09/2026 · {data.stats.replies} escolas com resposta ·{' '}
+          {data.stats.alignment} em alinhamento · {data.stats.meetings} com reunião realizada.
+          Endereços e estados fornecidos pelo grupo.
+        </p>
         {data.source === 'snapshot' ? (
           <p className="meta-line">
             Fonte: informações fornecidas pelo grupo · referência: 30/09/2026. Atualizações do banco
