@@ -72,10 +72,30 @@ export function summarizeSchools(schools: School[]) {
     ).length,
   };
 }
-export const timeline = [
+export const timeline: { date: string; title: string; text?: string }[] = [
+  {
+    date: '02 de setembro · 2026',
+    title: 'Definição do tema',
+  },
+  {
+    date: '08 de setembro · 2026',
+    title: 'Elaboração do relatório',
+  },
+  {
+    date: '23 de setembro · 2026',
+    title: 'Apresentação da introdução à professora',
+  },
+  {
+    date: '24 de setembro · 2026',
+    title: 'Envio de e-mails',
+  },
+  {
+    date: '28 de setembro · 2026',
+    title: 'Levantamento das respostas',
+  },
   {
     date: '30 de setembro · 2026',
-    title: 'Levantamento das escolas',
+    title: 'Atualização do levantamento das escolas',
     text: '62 escolas com resposta: 18 interessadas, três em alinhamento e uma com reunião realizada.',
   },
   {

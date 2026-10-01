@@ -2,7 +2,7 @@ import { PageIntro, Timeline } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
 export const revalidate = 60;
 export const metadata = {
-  title: 'Mobilização e resultados',
+  title: 'Cronograma e mobilização',
   alternates: { canonical: '/impacto' },
 };
 export default async function Page() {
@@ -18,9 +18,9 @@ export default async function Page() {
   return (
     <>
       <PageIntro
-        eyebrow="ECMA · ESCOLAS"
-        title="Mobilização das escolas"
-        description="Respostas e encontros registrados no levantamento de 30 de setembro de 2026."
+        eyebrow="ECMA · SETEMBRO DE 2026"
+        title="Cronograma e mobilização"
+        description="Etapas do projeto e respostas das escolas registradas no levantamento de 30 de setembro de 2026."
       />
       <div className="container content-space">
         <div className="metrics-grid">
@@ -31,7 +31,7 @@ export default async function Page() {
             </div>
           ))}
         </div>
-        <h2>Registros de setembro</h2>
+        <h2>Cronograma do projeto</h2>
         <Timeline />
         {d.activities.length ? (
           <section>

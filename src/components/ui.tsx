@@ -41,10 +41,10 @@ export function Timeline() {
     <ol className="timeline">
       {timeline.map((step, i) => (
         <li key={step.title}>
-          <span className="timeline-number">0{i + 1}</span>
+          <span className="timeline-number">{String(i + 1).padStart(2, '0')}</span>
           <p className="eyebrow">{step.date}</p>
           <h3>{step.title}</h3>
-          <p>{step.text}</p>
+          {step.text ? <p>{step.text}</p> : null}
         </li>
       ))}
     </ol>

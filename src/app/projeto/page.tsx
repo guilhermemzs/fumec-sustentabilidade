@@ -58,7 +58,7 @@ export default function Project() {
         </aside>
       </div>
       <section className="container content-space">
-        <h2>Mobilização das escolas</h2>
+        <h2>Cronograma do projeto</h2>
         <Timeline />
       </section>
       <Invite />

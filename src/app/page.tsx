@@ -193,10 +193,10 @@ export default async function Home() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">03 / ESCOLAS</p>
-            <h2>Mobilização das escolas</h2>
+            <h2>Cronograma do projeto</h2>
           </div>
           <Link className="text-link" href="/impacto">
-            Ver os registros <ArrowRight size={18} />
+            Ver o cronograma <ArrowRight size={18} />
           </Link>
         </div>
         <Timeline />
