@@ -1,5 +1,6 @@
 import { PageIntro, Timeline } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
+import { SchoolVisit } from '@/components/school-visit';
 export const revalidate = 60;
 export const metadata = {
   title: 'Cronograma e mobilização',
@@ -8,7 +9,7 @@ export const metadata = {
 export default async function Page() {
   const d = await getProjectData();
   const items: [string, string][] = [
-    [String(d.stats.replies), 'Escolas com resposta'],
+    [String(d.stats.registered), 'Escolas no cadastro'],
     [String(d.stats.meetings), 'Escolas com reunião realizada'],
     [String(d.stats.alignment), 'Escolas em alinhamento'],
   ];
@@ -18,11 +19,12 @@ export default async function Page() {
   return (
     <>
       <PageIntro
-        eyebrow="ECMA · SETEMBRO DE 2026"
+        eyebrow="ECMA · EXTENSÃO 2026"
         title="Cronograma e mobilização"
-        description="Etapas do projeto e respostas das escolas registradas no levantamento de 30 de setembro de 2026."
+        description="Etapas da mobilização e encontro confirmado para 06 de novembro, das 12h às 15h, na E.M. Florie Wanderley Dias, em Nova Lima."
       />
       <div className="container content-space">
+        <SchoolVisit />
         <div className="metrics-grid">
           {items.map(([value, title]) => (
             <div className="metric" key={title}>

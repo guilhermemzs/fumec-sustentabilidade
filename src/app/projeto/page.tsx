@@ -1,4 +1,5 @@
 import { PageIntro, Timeline, Invite } from '@/components/ui';
+import { SchoolVisit } from '@/components/school-visit';
 export const metadata = { title: 'O projeto', alternates: { canonical: '/projeto' } };
 export default function Project() {
   return (
@@ -8,6 +9,9 @@ export default function Project() {
         title="Construção sustentável e educação ambiental"
         description="ECMA — Entre Construção e Meio Ambiente. Projeto de Extensão de sete estudantes de Engenharia Civil da Universidade FUMEC."
       />
+      <div className="container visit-space">
+        <SchoolVisit />
+      </div>
       <div className="container content-space two-columns">
         <article className="prose">
           <h2>Objetivo</h2>
@@ -20,6 +24,12 @@ export default function Project() {
             Planejamento, escolha de materiais, uso da água e da energia e destinação de resíduos. A
             apresentação do grupo aborda as dimensões ambiental, social e econômica da
             sustentabilidade e o ciclo de vida das construções.
+          </p>
+          <h2>Aprender brincando</h2>
+          <p>
+            No encontro de 06 de novembro, das 12h às 15h, o grupo vai utilizar um jogo de tabuleiro
+            com as crianças da E.M. Florie Wanderley Dias, em Nova Lima, como ferramenta de
+            conscientização ambiental.
           </p>
           <h2>Apresentação do grupo</h2>
           <p>

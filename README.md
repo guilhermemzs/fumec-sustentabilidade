@@ -93,6 +93,8 @@ Para testar uma publicação: defina `TEST_BASE_URL` com o domínio. O teste de 
 
 ## Política de publicação
 
+Em 31/10/2026, a equipe confirmou um encontro na E.M. Florie Wanderley Dias, Rua Princesa Isabel, 120, Vila São José, Nova Lima/MG, em **06/11/2026, das 12h às 15h** (America/Sao_Paulo). A atividade é um jogo de tabuleiro com as crianças como forma de conscientização ambiental. O encontro aparece no início, no projeto, nas escolas e no cronograma, com o mapa fornecido. O cadastro passa a 63 escolas, preservando o levantamento histórico de 62 respostas de setembro. `npx tsx scripts/register-school-visit.ts` exibe a prévia; `--apply` faz o cadastro com backup e transação, sem duplicação. A atividade fica confirmada, com data de realização e alcance vazios.
+
 A área pública omite informações ausentes, estimativas, previsões sem confirmação e avisos internos. Notas de acompanhamento permanecem na gestão e não são enviadas aos componentes de cliente. Os 32 registros classificados internamente como `possibilidade_futura` aparecem apenas como `Respondeu`; a fonte e os estados na administração são preservados.
 
 O alcance só é mostrado para atividades realizadas com data de conclusão. Uma contagem ausente é omitida; zero é mantido quando foi explicitamente informado em uma atividade. Interesse, alinhamento e reunião não se tornam resultados de execução.

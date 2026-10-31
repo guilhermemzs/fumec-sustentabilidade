@@ -7,6 +7,7 @@ import { summarizeSchools, type School, referenceDate } from './project';
 import { initialSchools } from './survey';
 import { publicSchools, publicResults } from './publication';
 import { documentedMembers } from './team';
+import { visitSchool } from './school-visit';
 export const getProjectData = cache(async () => {
   const db = getDb();
   if (db) {
@@ -67,8 +68,8 @@ export const getProjectData = cache(async () => {
     }
   }
   return {
-    schools: publicSchools(initialSchools),
-    stats: summarizeSchools(initialSchools),
+    schools: publicSchools([...initialSchools, visitSchool]),
+    stats: summarizeSchools([...initialSchools, visitSchool]),
     activities: [],
     materials: [],
     members: documentedMembers,

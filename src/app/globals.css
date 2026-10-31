@@ -439,6 +439,44 @@ p {
   margin-bottom: 0;
   color: var(--muted);
 }
+.visit-space {
+  margin-block: 28px 52px;
+}
+.school-visit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  padding: 36px;
+  margin-bottom: 32px;
+  background: #eaf0de;
+  border: 1px solid #bacaa3;
+}
+.school-visit h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 12px 0;
+}
+.visit-copy > p:last-child {
+  color: var(--muted);
+  max-width: 56ch;
+}
+.visit-details > p {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+.visit-details svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+@media (max-width: 700px) {
+  .school-visit {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px;
+  }
+}
 .timeline {
   list-style: none;
   padding: 0;

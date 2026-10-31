@@ -63,7 +63,7 @@ test('ECMA publica os retratos na ordem informada e preserva os estados do levan
   if (left!.y === right!.y) expect(left!.x).toBeLessThan(right!.x);
   else expect(left!.y).toBeLessThan(right!.y);
   await page.goto('/escolas');
-  await expect(page.locator('.school-row')).toHaveCount(62);
+  await expect(page.locator('.school-row')).toHaveCount(63);
   await page.getByRole('searchbox').fill('Maria Modesta');
   await expect(page.locator('.school-row')).toContainText('Reunião realizada');
   await expect(page.locator('.school-row')).toContainText(
@@ -171,7 +171,7 @@ test('mapa regional funciona sem inventar localizações individuais', async ({ 
   await page.locator('.leaflet-interactive').click({ force: true });
   await expect(page.locator('.leaflet-popup-content')).toHaveText('Raio de visualização: 5 km');
   await page.getByRole('button', { name: 'Zoom in' }).click();
-  await expect(page.locator('.school-row a')).toHaveCount(62);
+  await expect(page.locator('.school-row a')).toHaveCount(63);
   await expect(page.locator('.school-row a').first()).toHaveAttribute(
     'href',
     /openstreetmap.org\/search\?query=/,

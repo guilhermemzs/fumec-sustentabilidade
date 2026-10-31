@@ -4,6 +4,7 @@ import { SchoolDrawing } from '@/components/school-drawing';
 import { ActionLink, Invite, Timeline } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
 import { TeamPortraits } from '@/components/team-portraits';
+import { SchoolVisit } from '@/components/school-visit';
 export const revalidate = 60;
 export const metadata = { alternates: { canonical: '/' } };
 export default async function Home() {
@@ -59,12 +60,15 @@ export default async function Home() {
           <SchoolDrawing />
         </div>
       </section>
+      <div className="container visit-space">
+        <SchoolVisit />
+      </div>
       <section className="fact-band" aria-label="Contexto da iniciativa">
         <div className="container facts">
           <div>
-            <strong>{data.stats.replies}</strong>
+            <strong>{data.stats.registered}</strong>
             <span>
-              escolas com resposta<small>Levantamento de 30/09/2026</small>
+              escolas no cadastro<small>Atualizado em 31/10/2026</small>
             </span>
           </div>
           <div>
@@ -77,7 +81,7 @@ export default async function Home() {
             <strong>{String(data.stats.alignment).padStart(2, '0')}</strong>
             <span>
               escolas em alinhamento
-              <small>Levantamento de 30/09/2026</small>
+              <small>Atualizado em 31/10/2026</small>
             </span>
           </div>
         </div>

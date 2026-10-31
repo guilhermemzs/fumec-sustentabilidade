@@ -1,4 +1,4 @@
-export const referenceDate = '2026-09-30';
+export const referenceDate = '2026-10-31';
 export const statuses = [
   'mapeada',
   'contatada',
@@ -102,5 +102,10 @@ export const timeline: { date: string; title: string; text?: string }[] = [
     date: '30 de setembro · 12h40',
     title: 'Reunião na Maria Modesta Cravo',
     text: 'Encontro com a Escola Estadual Maria Modesta Cravo, em Belo Horizonte.',
+  },
+  {
+    date: '06 de novembro · 2026 · 12h às 15h',
+    title: 'Atividade confirmada na E.M. Florie Wanderley Dias',
+    text: 'Jogo de tabuleiro com as crianças como forma de conscientização ambiental, em Nova Lima/MG.',
   },
 ];
