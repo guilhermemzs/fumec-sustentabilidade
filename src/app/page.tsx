@@ -61,15 +61,15 @@ export default async function Home() {
         </div>
         <figure className="hero-illustration board-photo">
           <Image
-            src="/images/tabuleiro-ecma.png"
+            src="/images/tabuleiro-ecma-arte.png"
             width={1280}
-            height={720}
+            height={713}
             sizes="(max-width: 600px) 92vw, (max-width: 920px) 540px, 48vw"
             alt="Tabuleiro colorido com 27 casas e desafios sobre água, energia e resíduos em uma obra."
             preload
           />
           <figcaption>
-            Jogo de tabuleiro preparado pela equipe ECMA para a atividade presencial.
+            Arte do jogo de tabuleiro preparado pela equipe ECMA para a atividade presencial.
           </figcaption>
         </figure>
       </section>

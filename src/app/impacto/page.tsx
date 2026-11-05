@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PageIntro, Timeline } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
 import { SchoolVisit } from '@/components/school-visit';
@@ -32,6 +33,11 @@ export default async function Page() {
             </div>
           ))}
         </div>
+        <p className="source-note">
+          <Link className="text-link" href="/referencias">
+            Consultar as fontes dos dados
+          </Link>
+        </p>
         {d.activities.length ? (
           <section>
             <h2>Atividades realizadas</h2>

@@ -4,7 +4,13 @@ export const revalidate = 60;
 export const metadata = { title: 'Materiais educativos', alternates: { canonical: '/materiais' } };
 const localMaterials = [
   {
-    title: 'Jogo de tabuleiro do ECMA',
+    title: 'Arte do jogo de tabuleiro',
+    description: 'Imagem completa do tabuleiro com as 27 casas e seus desafios.',
+    href: '/images/tabuleiro-ecma-arte.png',
+    type: 'PNG · ARTE DO TABULEIRO',
+  },
+  {
+    title: 'Foto do tabuleiro físico',
     description:
       'Fotografia do tabuleiro físico preparado para a atividade presencial de educação ambiental.',
     href: '/images/tabuleiro-ecma.png',

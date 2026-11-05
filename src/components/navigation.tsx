@@ -9,6 +9,7 @@ const links = [
   ['/escolas', 'Nas escolas'],
   ['/sustentabilidade', 'Aprender'],
   ['/materiais', 'Materiais'],
+  ['/referencias', 'Referências'],
 ] as const;
 export function Navigation() {
   const path = usePathname();

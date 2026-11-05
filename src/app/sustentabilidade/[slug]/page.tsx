@@ -45,9 +45,11 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
                   <a href={source.href} target="_blank" rel="noopener noreferrer">
                     {source.title}
                   </a>
+                  <p>{source.note}</p>
                 </li>
               ))}
             </ul>
+            <Link href="/referencias">Consultar todas as referências do ECMA</Link>
           </section>
         </article>
         <aside className="aside-note">

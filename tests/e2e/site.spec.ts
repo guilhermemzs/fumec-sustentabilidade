@@ -10,6 +10,7 @@ test('páginas públicas, conteúdo e ausência de overflow', async ({ page }) =
     '/escolas',
     '/impacto',
     '/materiais',
+    '/referencias',
     '/equipe',
     '/contato',
     '/privacidade',
@@ -140,6 +141,7 @@ test('materiais reais e metadados de publicação', async ({ request }) => {
   }
   const sitemap = await request.get('/sitemap.xml');
   expect(await sitemap.text()).toContain('/sustentabilidade/agua-da-chuva');
+  expect(await sitemap.text()).toContain('/referencias');
   expect(await sitemap.text()).toContain('/sustentabilidade/checklist');
   expect(await sitemap.text()).toContain('/sustentabilidade/quiz');
   expect(await sitemap.text()).not.toContain('/casa-da-terra');

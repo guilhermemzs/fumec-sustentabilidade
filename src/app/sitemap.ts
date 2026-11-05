@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/escolas',
     '/impacto',
     '/materiais',
+    '/referencias',
     '/equipe',
     '/contato',
     '/privacidade',
