@@ -3,7 +3,6 @@ import { Checklist } from '@/components/learning-tools';
 export const metadata = {
   title: 'Checklist de sustentabilidade escolar',
   alternates: { canonical: '/sustentabilidade/checklist' },
-  robots: { index: false },
 };
 export default function Page() {
   return (

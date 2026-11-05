@@ -61,10 +61,10 @@ export default async function Page() {
         </div>
         <div className="checklist-callout">
           <div>
-            <h3>Referências temáticas</h3>
-            <p>Textos de apoio sobre água, energia, materiais e resíduos na construção.</p>
+            <h3>Acervo para as escolas</h3>
+            <p>Leituras e atividades para continuar o trabalho com as turmas depois da visita.</p>
           </div>
-          <ActionLink href="/sustentabilidade">Consultar referências</ActionLink>
+          <ActionLink href="/sustentabilidade">Acessar a seção Aprender</ActionLink>
         </div>
       </div>
     </>

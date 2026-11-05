@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ActionLink, Invite } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
+import { portraits } from '@/lib/team';
 import { TeamPortraits } from '@/components/team-portraits';
 import { SchoolVisit } from '@/components/school-visit';
 
@@ -11,6 +12,12 @@ export const metadata = { alternates: { canonical: '/' } };
 
 export default async function Home() {
   const data = await getProjectData();
+  const membersWithoutPortrait = data.members.filter(
+    (member) => !portraits[member.name] || !member.photoUrl,
+  );
+  const additionalNames = new Intl.ListFormat('pt-BR').format(
+    membersWithoutPortrait.map((member) => member.name),
+  );
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -102,7 +109,22 @@ export default async function Home() {
           </Link>
         </div>
       </section>
-      {data.members.some((m) => m.photoUrl) ? (
+      <section className="learning-section section">
+        <div className="container intro-split">
+          <div>
+            <p className="eyebrow">APRENDER</p>
+            <h2>Da visita ao cotidiano da escola</h2>
+          </div>
+          <div className="intro-text">
+            <p>
+              O acervo do ECMA reúne leituras e atividades para as escolas retomarem os temas da
+              visita ao longo do ano.
+            </p>
+            <ActionLink href="/sustentabilidade">Acessar o acervo</ActionLink>
+          </div>
+        </div>
+      </section>
+      {data.members.length ? (
         <section className="section container">
           <div className="section-heading">
             <div>
@@ -114,6 +136,9 @@ export default async function Home() {
             </Link>
           </div>
           <TeamPortraits members={data.members} />
+          {additionalNames ? (
+            <p className="source-note">Integrantes da equipe: {additionalNames}.</p>
+          ) : null}
         </section>
       ) : null}
       <Invite />

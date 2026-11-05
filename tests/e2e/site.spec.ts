@@ -55,6 +55,7 @@ test('ECMA publica os retratos na ordem informada e preserva os estados do levan
       ),
   ).toBe(true);
   await expect(page.locator('.team-names article')).toHaveCount(2);
+  await expect(page.getByRole('heading', { name: 'Camilly Cristina', exact: true })).toBeVisible();
   await expect(page.locator('.portrait-pair h3')).toHaveText(['Frederico Maders', 'Caio Augusto']);
   const left = await page.locator('.portrait-pair .member-portrait').first().boundingBox();
   const right = await page.locator('.portrait-pair .member-portrait').last().boundingBox();
@@ -139,6 +140,8 @@ test('materiais reais e metadados de publicação', async ({ request }) => {
   }
   const sitemap = await request.get('/sitemap.xml');
   expect(await sitemap.text()).toContain('/sustentabilidade/agua-da-chuva');
+  expect(await sitemap.text()).toContain('/sustentabilidade/checklist');
+  expect(await sitemap.text()).toContain('/sustentabilidade/quiz');
   expect(await sitemap.text()).not.toContain('/casa-da-terra');
   for (const hidden of ['/casa-da-terra', '/materiais/cartilha.pdf', '/materiais/checklist.pdf']) {
     expect((await request.get(hidden)).status()).toBe(404);
@@ -146,7 +149,7 @@ test('materiais reais e metadados de publicação', async ({ request }) => {
   const robots = await request.get('/robots.txt');
   expect(await robots.text()).toContain('Disallow: /admin');
 });
-test('menu navega para o projeto em desktop e celular', async ({ page }, info) => {
+test('menu navega para o projeto e o acervo em desktop e celular', async ({ page }, info) => {
   await page.goto('/');
   if (info.project.name === 'mobile')
     await page.getByRole('button', { name: 'Abrir menu' }).click();
@@ -156,6 +159,23 @@ test('menu navega para o projeto em desktop e celular', async ({ page }, info) =
     .click();
   await expect(page).toHaveURL(/\/projeto$/);
   await expect(page.locator('h1')).toContainText('Construção sustentável');
+
+  if (info.project.name === 'mobile')
+    await page.getByRole('button', { name: 'Abrir menu' }).click();
+  await page
+    .getByRole('navigation', { name: 'Navegação principal' })
+    .getByRole('link', { name: 'Aprender', exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/sustentabilidade$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'Aprender com o ECMA' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Abrir checklist' })).toHaveAttribute(
+    'href',
+    '/sustentabilidade/checklist',
+  );
+  await expect(page.getByRole('link', { name: 'Abrir quiz' })).toHaveAttribute(
+    'href',
+    '/sustentabilidade/quiz',
+  );
 });
 test('mapa regional funciona sem inventar localizações individuais', async ({ page }) => {
   await page.goto('/escolas');

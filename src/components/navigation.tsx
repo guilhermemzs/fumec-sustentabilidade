@@ -7,6 +7,7 @@ const links = [
   ['/impacto', 'Resultados'],
   ['/projeto', 'O projeto'],
   ['/escolas', 'Nas escolas'],
+  ['/sustentabilidade', 'Aprender'],
   ['/materiais', 'Materiais'],
 ] as const;
 export function Navigation() {

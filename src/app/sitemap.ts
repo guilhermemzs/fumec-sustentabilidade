@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/equipe',
     '/contato',
     '/privacidade',
+    '/sustentabilidade/checklist',
+    '/sustentabilidade/quiz',
     ...lessons.map((l) => '/sustentabilidade/' + l.slug),
   ].map((path) => ({
     url: base + path,

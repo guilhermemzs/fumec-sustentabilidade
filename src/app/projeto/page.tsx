@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PageIntro, Timeline, Invite } from '@/components/ui';
 import { SchoolVisit } from '@/components/school-visit';
 export const metadata = { title: 'O projeto', alternates: { canonical: '/projeto' } };
@@ -35,6 +36,12 @@ export default function Project() {
           <p>
             Este site reúne o levantamento com as escolas, os registros das atividades e os
             materiais do projeto para consulta pública.
+          </p>
+          <h2>Continuidade nas escolas</h2>
+          <p>
+            A seção <Link href="/sustentabilidade">Aprender</Link> reúne leituras e propostas de
+            atividades para educadores retomarem os temas do projeto com suas turmas depois da
+            visita.
           </p>
           <h2>Apresentação do grupo</h2>
           <p>
