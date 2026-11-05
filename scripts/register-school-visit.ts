@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
-import { eq, or, ilike } from 'drizzle-orm';
+import { and, eq, ilike, isNull, or } from 'drizzle-orm';
 import { schools, engagements, activities } from '../src/db/schema';
 import { schoolVisit, visitSchool } from '../src/lib/school-visit';
 
@@ -32,12 +32,21 @@ async function main() {
   if (beforeActivities.some((a) => a.id !== activityId)) {
     throw new Error('Revisar atividades já cadastradas para evitar duplicação.');
   }
+  const existingActivity = beforeActivities[0];
+  const scheduledAt = new Date(schoolVisit.startsAt);
+  const description = `${schoolVisit.description} ${schoolVisit.dateLabel}, ${schoolVisit.timeLabel.toLowerCase()} (horário de Brasília).`;
+  if (
+    existingActivity &&
+    (existingActivity.status !== 'confirmed' || existingActivity.completedAt)
+  ) {
+    throw new Error('Revisar o estado da atividade antes de reagendar.');
+  }
   console.log(
     JSON.stringify({
       school: visitSchool.name,
       status: 'confirmed',
       startsAt: schoolVisit.startsAt,
-      endsAt: schoolVisit.endsAt,
+      previousStartsAt: existingActivity?.scheduledAt ?? null,
       existingSchools: matches.length,
       existingActivities: beforeActivities.length,
     }),
@@ -75,14 +84,25 @@ async function main() {
         id: activityId,
         schoolId: school.id,
         title: schoolVisit.title,
-        description: `${schoolVisit.description} ${schoolVisit.dateLabel}, das 12h às 15h (horário de Brasília).`,
-        scheduledAt: new Date(schoolVisit.startsAt),
+        description,
+        scheduledAt,
         status: 'confirmed',
         completedAt: null,
         studentsReached: null,
         classesReached: null,
       })
-      .onConflictDoNothing(),
+      .onConflictDoUpdate({
+        target: activities.id,
+        set: { scheduledAt, description },
+        setWhere: and(
+          eq(activities.schoolId, school.id),
+          eq(activities.status, 'confirmed'),
+          isNull(activities.completedAt),
+          existingActivity?.scheduledAt
+            ? eq(activities.scheduledAt, existingActivity.scheduledAt)
+            : isNull(activities.scheduledAt),
+        ),
+      }),
   ]);
   const [afterSchools, afterEngagements, afterActivities] = await Promise.all([
     db.select().from(schools).where(eq(schools.id, school.id)),
@@ -95,7 +115,8 @@ async function main() {
     afterEngagements[0]?.status !== 'atividade_confirmada' ||
     afterActivities.length !== 1 ||
     activity.status !== 'confirmed' ||
-    activity.scheduledAt?.getTime() !== new Date(schoolVisit.startsAt).getTime() ||
+    activity.scheduledAt?.getTime() !== scheduledAt.getTime() ||
+    activity.description !== description ||
     activity.completedAt !== null ||
     activity.studentsReached !== null ||
     activity.classesReached !== null
@@ -112,4 +133,3 @@ main().catch((error: unknown) => {
   console.error(error instanceof Error ? error.message : 'Falha ao cadastrar encontro.');
   process.exitCode = 1;
 });
-

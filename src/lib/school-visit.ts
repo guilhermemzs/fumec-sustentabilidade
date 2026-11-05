@@ -4,10 +4,9 @@ export const schoolVisit = {
   title: 'Jogo de tabuleiro na escola',
   description:
     'A atividade presencial foi planejada para estudantes de 10 a 11 anos. As crianças vão jogar em um tabuleiro físico e conversar sobre decisões de uma obra que afetam o uso da água, da energia e dos materiais.',
-  startsAt: '2026-11-06T12:00:00-03:00',
-  endsAt: '2026-11-06T15:00:00-03:00',
-  dateLabel: '06 de novembro de 2026',
-  timeLabel: 'Das 12h às 15h',
+  startsAt: '2026-11-09T12:00:00-03:00',
+  dateLabel: '09 de novembro de 2026',
+  timeLabel: 'Às 12h',
   mapUrl: 'https://maps.app.goo.gl/wgpWCNDNc5GwticU8?g_st=aw',
 };
 

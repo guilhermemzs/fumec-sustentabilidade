@@ -18,6 +18,16 @@ test('páginas públicas, conteúdo e ausência de overflow', async ({ page }) =
     const response = await page.goto(route);
     expect(response?.status()).toBe(200);
     await expect(page.locator('h1')).toBeVisible();
+    if (['/', '/projeto', '/escolas', '/impacto'].includes(route)) {
+      const visit = page.getByRole('region', { name: 'Encontro na escola' });
+      await expect(visit.locator('time')).toHaveAttribute('datetime', '2026-11-09T12:00:00-03:00');
+      await expect(visit).toContainText('Às 12h');
+    }
+    if (['/projeto', '/impacto'].includes(route)) {
+      await expect(
+        page.locator('.timeline li').filter({ hasText: '04 de novembro' }),
+      ).toContainText('Apresentação intermediária do desenvolvimento');
+    }
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
     ).toBe(true);

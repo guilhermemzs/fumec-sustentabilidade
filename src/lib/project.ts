@@ -1,3 +1,5 @@
+import { schoolVisit } from './school-visit';
+
 export const referenceDate = '2026-10-31';
 export const statuses = [
   'mapeada',
@@ -104,7 +106,12 @@ export const timeline: { date: string; title: string; text?: string }[] = [
     text: 'Encontro com a Escola Estadual Maria Modesta Cravo, em Belo Horizonte.',
   },
   {
-    date: '06 de novembro · 2026 · 12h às 15h',
+    date: '04 de novembro · 2026',
+    title: 'Apresentação intermediária do desenvolvimento',
+    text: 'Apresentação do andamento do projeto à turma e à professora.',
+  },
+  {
+    date: `${schoolVisit.dateLabel} · ${schoolVisit.timeLabel.toLowerCase()}`,
     title: 'Atividade confirmada na E.M. Florie Wanderley Dias',
     text: 'Jogo de tabuleiro com as crianças como forma de conscientização ambiental, em Nova Lima/MG.',
   },
