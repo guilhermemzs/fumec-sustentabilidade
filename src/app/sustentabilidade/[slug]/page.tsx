@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { lessons } from '@/lib/learning';
 import { lessonSources } from '@/lib/learning-sources';
-import { PageIntro, ActionLink } from '@/components/ui';
+import { PageIntro } from '@/components/ui';
 export function generateStaticParams() {
   return lessons.map((l) => ({ slug: l.slug }));
 }
@@ -36,9 +36,6 @@ export default async function Lesson({ params }: { params: Promise<{ slug: strin
           <div className="result-panel">
             <h2>Para levar com você</h2>
             <p>{lesson.takeaway}</p>
-          </div>
-          <div className="lesson-navigation">
-            <ActionLink href="/sustentabilidade/quiz">Experimente o quiz</ActionLink>
           </div>
           <section>
             <h2>Referências</h2>

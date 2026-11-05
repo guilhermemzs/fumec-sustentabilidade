@@ -3,6 +3,7 @@ import { Quiz } from '@/components/learning-tools';
 export const metadata = {
   title: 'Quiz de sustentabilidade',
   alternates: { canonical: '/sustentabilidade/quiz' },
+  robots: { index: false },
 };
 export default function Page() {
   return (

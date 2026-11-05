@@ -1,8 +1,9 @@
 import { PageIntro } from '@/components/ui';
 import { Checklist } from '@/components/learning-tools';
 export const metadata = {
-  title: 'Minha escola é sustentável? — Checklist',
+  title: 'Checklist de sustentabilidade escolar',
   alternates: { canonical: '/sustentabilidade/checklist' },
+  robots: { index: false },
 };
 export default function Page() {
   return (

@@ -35,9 +35,7 @@ test('ECMA publica os retratos na ordem informada e preserva os estados do levan
   page,
 }) => {
   await page.goto('/equipe');
-  await expect(
-    page.getByRole('link', { name: 'ECMA: Entre Construção e Meio Ambiente — início' }),
-  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Página inicial do ECMA' })).toBeVisible();
   await expect(page.locator('.member-portrait h3')).toHaveText([
     'Guilherme Menezes',
     'Bernardo Lopes',

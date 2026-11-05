@@ -11,11 +11,11 @@ const serif = Newsreader({ subsets: ['latin'], variable: '--font-heading', displ
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: {
-    default: 'ECMA — Entre Construção e Meio Ambiente | Extensão FUMEC',
+    default: 'Resultados do ECMA | Extensão FUMEC',
     template: '%s | ECMA · Extensão FUMEC',
   },
   description:
-    'Projeto de Extensão de estudantes de Engenharia Civil da Universidade FUMEC: construção sustentável, educação ambiental e diálogo com escolas de Belo Horizonte.',
+    'Resultados do ECMA, projeto de extensão de Engenharia Civil da Universidade FUMEC sobre construção sustentável e educação ambiental.',
   keywords: [
     'Projeto de Extensão FUMEC',
     'Engenharia Civil FUMEC',

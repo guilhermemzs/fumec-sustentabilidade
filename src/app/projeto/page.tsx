@@ -7,7 +7,7 @@ export default function Project() {
       <PageIntro
         eyebrow="ENGENHARIA CIVIL · FUMEC · EXTENSÃO 2026"
         title="Construção sustentável e educação ambiental"
-        description="ECMA — Entre Construção e Meio Ambiente. Projeto de Extensão de sete estudantes de Engenharia Civil da Universidade FUMEC."
+        description="ECMA (Entre Construção e Meio Ambiente). Projeto de extensão de sete estudantes de Engenharia Civil da Universidade FUMEC."
       />
       <div className="container visit-space">
         <SchoolVisit />
@@ -25,11 +25,16 @@ export default function Project() {
             apresentação do grupo aborda as dimensões ambiental, social e econômica da
             sustentabilidade e o ciclo de vida das construções.
           </p>
-          <h2>Aprender brincando</h2>
+          <h2>Atividade presencial</h2>
           <p>
-            No encontro de 06 de novembro, das 12h às 15h, o grupo vai utilizar um jogo de tabuleiro
-            com as crianças da E.M. Florie Wanderley Dias, em Nova Lima, como ferramenta de
-            conscientização ambiental.
+            O jogo de tabuleiro foi preparado para estudantes de 10 a 11 anos. As casas da trilha
+            apresentam situações de uma obra, como separar resíduos, economizar água e aproveitar a
+            luz natural. A dinâmica acontece com o tabuleiro físico e conversa em grupo.
+          </p>
+          <h2>Divulgação dos resultados</h2>
+          <p>
+            Este site reúne o levantamento com as escolas, os registros das atividades e os
+            materiais do projeto para consulta pública.
           </p>
           <h2>Apresentação do grupo</h2>
           <p>

@@ -4,10 +4,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 const links = [
+  ['/impacto', 'Resultados'],
   ['/projeto', 'O projeto'],
-  ['/sustentabilidade', 'Aprender'],
   ['/escolas', 'Nas escolas'],
-  ['/impacto', 'Cronograma'],
   ['/materiais', 'Materiais'],
 ] as const;
 export function Navigation() {
@@ -20,7 +19,7 @@ export function Navigation() {
           href="/"
           className="brand"
           onClick={() => setOpen(false)}
-          aria-label="ECMA: Entre Construção e Meio Ambiente — início"
+          aria-label="Página inicial do ECMA"
         >
           <span className="brand-mark" aria-hidden="true">
             <i />

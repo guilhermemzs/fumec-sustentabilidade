@@ -1,12 +1,14 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Droplets, Wind, Layers3 } from 'lucide-react';
-import { SchoolDrawing } from '@/components/school-drawing';
-import { ActionLink, Invite, Timeline } from '@/components/ui';
+import { ArrowRight } from 'lucide-react';
+import { ActionLink, Invite } from '@/components/ui';
 import { getProjectData } from '@/lib/data';
 import { TeamPortraits } from '@/components/team-portraits';
 import { SchoolVisit } from '@/components/school-visit';
+
 export const revalidate = 60;
 export const metadata = { alternates: { canonical: '/' } };
+
 export default async function Home() {
   const data = await getProjectData();
   const schema = {
@@ -16,8 +18,14 @@ export default async function Home() {
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://fumec-sustentabilidade.vercel.app',
     inLanguage: 'pt-BR',
     description:
-      'Projeto de Extensão de estudantes de Engenharia Civil da Universidade FUMEC: construção sustentável e educação ambiental em escolas.',
+      'Resultados do ECMA, projeto de extensão de Engenharia Civil da Universidade FUMEC sobre construção sustentável e educação ambiental.',
   };
+  const mobilization = [
+    [data.stats.registered, 'Escolas no cadastro'],
+    [data.stats.meetings, 'Escolas com reunião realizada'],
+    [data.stats.alignment, 'Escolas em alinhamento'],
+  ];
+
   return (
     <>
       <script
@@ -31,64 +39,52 @@ export default async function Home() {
             PROJETO DE EXTENSÃO <span>2026 / 2ª ETAPA</span>
           </div>
           <h1>
-            Construção sustentável
-            <br />
-            <em>na escola.</em>
+            Resultados do <em>projeto ECMA</em>
           </h1>
           <p className="hero-description">
-            ECMA — Entre Construção e Meio Ambiente. Projeto de Extensão de estudantes de Engenharia
-            Civil da Universidade FUMEC.
+            Acompanhe os resultados do levantamento com as escolas e as atividades presenciais de
+            educação ambiental do projeto Entre Construção e Meio Ambiente, da Universidade FUMEC.
           </p>
           <div className="hero-actions">
-            <ActionLink href="/projeto">Conheça o projeto</ActionLink>
-            <Link className="text-link" href="/sustentabilidade">
-              Explore e aprenda <ArrowRight size={18} />
+            <ActionLink href="/impacto">Ver resultados</ActionLink>
+            <Link className="text-link" href="/projeto">
+              Conheça o projeto <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
-          <div className="hero-signature">
-            <span className="technical-cross" aria-hidden="true">
-              +
-            </span>
-            <span>
-              ENGENHARIA CIVIL
-              <br />
-              <strong>Universidade FUMEC · Belo Horizonte</strong>
-            </span>
-          </div>
         </div>
-        <div className="hero-illustration">
-          <SchoolDrawing />
+        <figure className="hero-illustration board-photo">
+          <Image
+            src="/images/tabuleiro-ecma.png"
+            width={1280}
+            height={720}
+            sizes="(max-width: 600px) 92vw, (max-width: 920px) 540px, 48vw"
+            alt="Tabuleiro colorido com 27 casas e desafios sobre água, energia e resíduos em uma obra."
+            preload
+          />
+          <figcaption>
+            Jogo de tabuleiro preparado pela equipe ECMA para a atividade presencial.
+          </figcaption>
+        </figure>
+      </section>
+      <section className="fact-band" aria-label="Resultados da mobilização escolar">
+        <div className="container facts">
+          {mobilization.map(([value, label]) => (
+            <div key={label}>
+              <strong>{value}</strong>
+              <span>
+                {label}
+                <small>Levantamento de 31/10/2026</small>
+              </span>
+            </div>
+          ))}
         </div>
       </section>
       <div className="container visit-space">
         <SchoolVisit />
       </div>
-      <section className="fact-band" aria-label="Contexto da iniciativa">
-        <div className="container facts">
-          <div>
-            <strong>{data.stats.registered}</strong>
-            <span>
-              escolas no cadastro<small>Atualizado em 31/10/2026</small>
-            </span>
-          </div>
-          <div>
-            <strong>07</strong>
-            <span>
-              estudantes de Engenharia Civil<small>Universidade FUMEC</small>
-            </span>
-          </div>
-          <div>
-            <strong>{String(data.stats.alignment).padStart(2, '0')}</strong>
-            <span>
-              escolas em alinhamento
-              <small>Atualizado em 31/10/2026</small>
-            </span>
-          </div>
-        </div>
-      </section>
       <section className="section container intro-split">
         <div>
-          <p className="eyebrow">01 / O PROJETO</p>
+          <p className="eyebrow">EXTENSÃO UNIVERSITÁRIA</p>
           <h2>
             Engenharia Civil e
             <br />
@@ -97,15 +93,12 @@ export default async function Home() {
         </div>
         <div className="intro-text">
           <p>
-            Por onde entra a luz? Para onde vai a água da chuva? O que acontece com os materiais que
-            descartamos?
-          </p>
-          <p>
-            Somos sete estudantes de Engenharia Civil da Universidade FUMEC. O projeto aborda água,
-            energia, materiais e resíduos no cotidiano escolar.
+            O ECMA reúne sete estudantes de Engenharia Civil da Universidade FUMEC. O projeto
+            aproxima a construção sustentável do cotidiano escolar com exemplos sobre água, energia,
+            materiais e resíduos.
           </p>
           <Link className="text-link" href="/projeto">
-            Entenda nossa proposta <ArrowRight size={18} />
+            Saiba como funciona o projeto <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
       </section>
@@ -117,94 +110,12 @@ export default async function Home() {
               <h2>Equipe ECMA</h2>
             </div>
             <Link className="text-link" href="/equipe">
-              Conheça a equipe <ArrowRight size={18} />
+              Conheça a equipe <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
           <TeamPortraits members={data.members} />
-          <p className="source-note">
-            Equipe de sete estudantes de Engenharia Civil da Universidade FUMEC.
-          </p>
         </section>
       ) : null}
-      <section className="learning-section section">
-        <div className="container">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">02 / TEMAS EDUCATIVOS</p>
-              <h2>
-                Construção sustentável
-                <br />
-                no cotidiano.
-              </h2>
-            </div>
-            <Link className="text-link" href="/sustentabilidade">
-              Todos os temas <ArrowRight size={18} />
-            </Link>
-          </div>
-          <div className="topic-grid">
-            {[
-              {
-                title: 'Água & território',
-                icon: Droplets,
-                n: '01',
-                text: 'Da nascente ao pátio: descubra os caminhos da água e o papel do solo.',
-                href: '/sustentabilidade/agua-da-chuva',
-                color: 'water',
-              },
-              {
-                title: 'Luz, ar & conforto',
-                icon: Wind,
-                n: '02',
-                text: 'Entenda como os espaços podem aproveitar luz e ventilação natural.',
-                href: '/sustentabilidade/ventilacao-natural',
-                color: 'air',
-              },
-              {
-                title: 'Materiais & novos ciclos',
-                icon: Layers3,
-                n: '03',
-                text: 'Conheça a história dos materiais e as possibilidades do reaproveitamento.',
-                href: '/sustentabilidade/residuo-material',
-                color: 'earth',
-              },
-            ].map((t) => (
-              <Link key={t.n} href={t.href} className={'topic ' + t.color}>
-                <div className="topic-top">
-                  <t.icon size={36} strokeWidth={1.3} />
-                  <span>{t.n}</span>
-                </div>
-                <h3>{t.title}</h3>
-                <p>{t.text}</p>
-                <span className="topic-bottom">
-                  Explorar o tema <ArrowRight size={20} />
-                </span>
-              </Link>
-            ))}
-          </div>
-          <div className="checklist-callout">
-            <div>
-              <span className="eyebrow">OBSERVAR → CONVERSAR → TRANSFORMAR</span>
-              <h3>Minha escola é sustentável?</h3>
-              <p>Um checklist para iniciar uma conversa com a sua turma.</p>
-            </div>
-            <ActionLink href="/sustentabilidade/checklist" secondary>
-              Faça a observação
-            </ActionLink>
-          </div>
-        </div>
-      </section>
-      <section className="section container">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">03 / ESCOLAS</p>
-            <h2>Cronograma do projeto</h2>
-          </div>
-          <Link className="text-link" href="/impacto">
-            Ver o cronograma <ArrowRight size={18} />
-          </Link>
-        </div>
-        <Timeline />
-      </section>
       <Invite />
     </>
   );

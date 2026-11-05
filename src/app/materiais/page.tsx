@@ -4,6 +4,13 @@ export const revalidate = 60;
 export const metadata = { title: 'Materiais educativos', alternates: { canonical: '/materiais' } };
 const localMaterials = [
   {
+    title: 'Jogo de tabuleiro do ECMA',
+    description:
+      'Fotografia do tabuleiro físico preparado para a atividade presencial de educação ambiental.',
+    href: '/images/tabuleiro-ecma.png',
+    type: 'PNG · REGISTRO FOTOGRÁFICO',
+  },
+  {
     title: 'Apresentação · Construção Sustentável',
     description:
       'Apresentação original do grupo para o Projeto de Extensão 2026. Conceitos, práticas essenciais e sustentabilidade no cotidiano.',
@@ -18,7 +25,7 @@ export default async function Page() {
       <PageIntro
         eyebrow="ECMA · MATERIAL DO GRUPO"
         title="Materiais do projeto"
-        description="Apresentação de Construção Sustentável do Projeto de Extensão 2026, fornecida pelo grupo."
+        description="Registro do jogo de tabuleiro, apresentação do grupo e referências sobre construção sustentável."
       />
       <div className="container content-space">
         <div className="materials-list">
@@ -54,10 +61,10 @@ export default async function Page() {
         </div>
         <div className="checklist-callout">
           <div>
-            <h3>Prefere explorar na tela?</h3>
-            <p>A biblioteca de temas, o checklist e o quiz também estão disponíveis online.</p>
+            <h3>Referências temáticas</h3>
+            <p>Textos de apoio sobre água, energia, materiais e resíduos na construção.</p>
           </div>
-          <ActionLink href="/sustentabilidade">Explorar a biblioteca</ActionLink>
+          <ActionLink href="/sustentabilidade">Consultar referências</ActionLink>
         </div>
       </div>
     </>

@@ -1,9 +1,9 @@
 import type { School } from './project';
 
 export const schoolVisit = {
-  title: 'Jogo de tabuleiro com as crianças',
+  title: 'Jogo de tabuleiro na escola',
   description:
-    'Vamos jogar um jogo de tabuleiro com as crianças para promover a conscientização ambiental de forma lúdica e participativa.',
+    'A atividade presencial foi planejada para estudantes de 10 a 11 anos. As crianças vão jogar em um tabuleiro físico e conversar sobre decisões de uma obra que afetam o uso da água, da energia e dos materiais.',
   startsAt: '2026-11-06T12:00:00-03:00',
   endsAt: '2026-11-06T15:00:00-03:00',
   dateLabel: '06 de novembro de 2026',

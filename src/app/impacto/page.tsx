@@ -3,7 +3,7 @@ import { getProjectData } from '@/lib/data';
 import { SchoolVisit } from '@/components/school-visit';
 export const revalidate = 60;
 export const metadata = {
-  title: 'Cronograma e mobilização',
+  title: 'Resultados do projeto',
   alternates: { canonical: '/impacto' },
 };
 export default async function Page() {
@@ -20,11 +20,10 @@ export default async function Page() {
     <>
       <PageIntro
         eyebrow="ECMA · EXTENSÃO 2026"
-        title="Cronograma e mobilização"
-        description="Etapas da mobilização e encontro confirmado para 06 de novembro, das 12h às 15h, na E.M. Florie Wanderley Dias, em Nova Lima."
+        title="Resultados do projeto"
+        description="Dados do levantamento com as escolas, atividades presenciais registradas e cronograma do projeto ECMA."
       />
       <div className="container content-space">
-        <SchoolVisit />
         <div className="metrics-grid">
           {items.map(([value, title]) => (
             <div className="metric" key={title}>
@@ -33,8 +32,6 @@ export default async function Page() {
             </div>
           ))}
         </div>
-        <h2>Cronograma do projeto</h2>
-        <Timeline />
         {d.activities.length ? (
           <section>
             <h2>Atividades realizadas</h2>
@@ -54,6 +51,9 @@ export default async function Page() {
         {d.students !== null || d.classes !== null ? (
           <p className="source-note">Participações somadas por atividade realizada.</p>
         ) : null}
+        <SchoolVisit />
+        <h2>Cronograma do projeto</h2>
+        <Timeline />
       </div>
     </>
   );
